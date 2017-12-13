@@ -1,6 +1,6 @@
 name: kf-es-model
 description: Kids First Elasticsearch Data Model
-version: v0.0.2
+version: v0.0.3
 
 sources:
   kf-dictionary:
@@ -18,58 +18,58 @@ sources:
           dataset:
             type: object
             source_path: case.project
-            exclude: ["programs", "releasable", "released", "state"]
+            exclude: ["type", "programs", "releasable", "released", "state"]
           program:
             type: object
             source_path: case.project.program
           trio:
             type: object
             source_path: case.trio
-            exclude: [project_id, proband, mother, father]
+            exclude: [type, project_id, proband, mother, father]
           diagnosis:
             type: array
             source_path: case.diagnosis
-            exclude: [project_id, cases]
+            exclude: [type, project_id, cases]
           demographic:
             type: object
             source_path: case.demographic
-            exclude: [project_id, cases]
+            exclude: [type, project_id, cases]
           clinical_supplement:
             type: object
             source_path: case.clinical_supplement
-            exclude: [project_id, cases, error_type, state_comment, state, file_state, type]
+            exclude: [type, project_id, cases, error_type, state_comment, state, file_state, type]
           sample:
             type: array
             source_path: case.sample
-            exclude: [project_id, cases, diagnoses]
+            exclude: [type, project_id, cases, diagnoses]
             properties:
               aliquot:
                 type: array
                 source_path: case.sample.aliquot
-                exclude: [project_id, samples]
+                exclude: [type, project_id, samples]
                 properties:
                   read_group:
                     type: array
                     source_path: case.sample.aliquot.read_group
-                    exclude: [project_id, aliquots]
+                    exclude: [type, project_id, aliquots]
                     properties:
                       submitted_aligned_reads:
                         type: object
                         source_path: case.sample.aliquot.read_group.submitted_aligned_reads
-                        exclude: [project_id, read_groups, error_type, state_comment, state, file_state, type]
+                        exclude: [type, project_id, read_groups, error_type, state_comment, state, file_state, type]
               slide:
                 type: array
                 source_path: case.sample.slide
-                exclude: [project_id, samples]
+                exclude: [type, project_id, samples]
                 properties:
                   slide_image:
                     type: array
                     source_path: case.sample.slide.slide_image
-                    exclude: [project_id, slides, error_type, state_comment, state, file_state, type]
+                    exclude: [type, project_id, slides, error_type, state_comment, state, file_state, type]
               pathology_report:
                 type: object
                 source_path: case.sample.pathology_report
-                exclude: [project_id, samples, error_type, state_comment, state, file_state, type]
+                exclude: [type, project_id, samples, error_type, state_comment, state, file_state, type]
   hpo:  # placeholder for now
   gene:  # placeholder for now
 target-models:
