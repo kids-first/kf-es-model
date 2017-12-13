@@ -1,0 +1,138 @@
+name: kf-es-model
+description: Kids First Elasticsearch Data Model
+version: v0.0.2
+
+sources:
+  kf-dictionary:
+    type: gdc-dictionary
+    api_endpoint: https://gen3.kids-first.io/api/v0/submission/_dictionary/_all
+    version: kf-v0.1.1
+    #git_repo: https://github.com/kids-first/kf-dictionary
+    #path: gdcdictionary/schemas
+    source_models:
+      case:
+        type: object
+        source_path: case
+        exclude: [projects, project_id, state, type]
+        properties:
+          dataset:
+            type: object
+            source_path: case.project
+            exclude: ["programs", "releasable", "released", "state"]
+          program:
+            type: object
+            source_path: case.project.program
+          trio:
+            type: object
+            source_path: case.trio
+            exclude: [project_id, proband, mother, father]
+          diagnosis:
+            type: array
+            source_path: case.diagnosis
+            exclude: [project_id, cases]
+          demographic:
+            type: object
+            source_path: case.demographic
+            exclude: [project_id, cases]
+          clinical_supplement:
+            type: object
+            source_path: case.clinical_supplement
+            exclude: [project_id, cases, error_type, state_comment, state, file_state, type]
+          sample:
+            type: array
+            source_path: case.sample
+            exclude: [project_id, cases, diagnoses]
+            properties:
+              aliquot:
+                type: array
+                source_path: case.sample.aliquot
+                exclude: [project_id, samples]
+                properties:
+                  read_group:
+                    type: array
+                    source_path: case.sample.aliquot.read_group
+                    exclude: [project_id, aliquots]
+                    properties:
+                      submitted_aligned_reads:
+                        type: object
+                        source_path: case.sample.aliquot.read_group.submitted_aligned_reads
+                        exclude: [project_id, read_groups, error_type, state_comment, state, file_state, type]
+              slide:
+                type: array
+                source_path: case.sample.slide
+                exclude: [project_id, samples]
+                properties:
+                  slide_image:
+                    type: array
+                    source_path: case.sample.slide.slide_image
+                    exclude: [project_id, slides, error_type, state_comment, state, file_state, type]
+              pathology_report:
+                type: object
+                source_path: case.sample.pathology_report
+                exclude: [project_id, samples, error_type, state_comment, state, file_state, type]
+  hpo:  # placeholder for now
+  gene:  # placeholder for now
+target-models:
+  file-centric:
+    es_settings:
+      analysis:
+        analyzer:
+          autocomplete_analyzed:
+            filter:
+            - lowercase
+            - edge_ngram
+            tokenizer: standard
+          autocomplete_prefix:
+            filter:
+            - lowercase
+            - edge_ngram
+            tokenizer: keyword
+          lowercase_keyword:
+            filter:
+            - lowercase
+            tokenizer: keyword
+        filter:
+          edge_ngram:
+            max_gram: '20'
+            min_gram: '1'
+            side: front
+            type: edge_ngram
+      index.mapping.nested_fields.limit: 100
+      index.max_result_window: 100000000
+    source: kf-dictionary
+    secondary_source: null
+    root_entities:
+      - case.sample.aliquot.read_group.submitted_aligned_reads
+      - case.sample.slide.slide_image
+      - case.sample.pathology_report
+      - case.clinical_supplement
+    exclude:
+      - error_type
+      - file_state
+      - project_id
+      - state
+      - state_comment
+    properties:
+      cases:
+        type: array
+        source_path: case
+        entity_include:
+          relation: [ "ancestor" ]
+        entity_exclude:
+          - submitted_aligned_reads
+          - slide_image
+          - pathology_report
+        field_type_mapping:  # not implemented yet
+          string: keyword
+          number: float
+      derived_from:  # direct parent entity (biospecimen or case) data_file is derived from
+        type: string
+        entity_include:
+          relation: [ "nearest_ancestor" ]
+          entity: [ "aliquot", "slide", "sample", "case" ]
+        field: entity_type
+      experiement: null  # placeholder for now
+      analysis: null  # placeholder for now
+      downstream_analysis: null  # placeholder for now
+
+  file-set:  # placeholder for now
