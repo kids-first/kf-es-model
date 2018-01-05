@@ -1,12 +1,12 @@
 name: kf-es-model
 description: Kids First Elasticsearch Data Model
-version: v0.0.3
+version: v0.0.4
 
 sources:
   kf-dictionary:
     type: gdc-dictionary
     api_endpoint: https://gen3.kids-first.io/api/v0/submission/_dictionary/_all
-    version: kf-v0.1.1
+    version: kf-v0.1.1-7-g514fee4
     #git_repo: https://github.com/kids-first/kf-dictionary
     #path: gdcdictionary/schemas
     source_models:
