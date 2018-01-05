@@ -37,7 +37,7 @@ sources:
           clinical_supplement:
             type: object
             source_path: case.clinical_supplement
-            exclude: [type, project_id, cases, error_type, state_comment, state, file_state, type]
+            exclude: [type, project_id, cases, error_type, state_comment, state, file_state]
           sample:
             type: array
             source_path: case.sample
@@ -56,7 +56,7 @@ sources:
                       submitted_aligned_reads:
                         type: object
                         source_path: case.sample.aliquot.read_group.submitted_aligned_reads
-                        exclude: [type, project_id, read_groups, error_type, state_comment, state, file_state, type]
+                        exclude: [type, project_id, read_groups, error_type, state_comment, state, file_state]
               slide:
                 type: array
                 source_path: case.sample.slide
@@ -65,11 +65,11 @@ sources:
                   slide_image:
                     type: array
                     source_path: case.sample.slide.slide_image
-                    exclude: [type, project_id, slides, error_type, state_comment, state, file_state, type]
+                    exclude: [type, project_id, slides, error_type, state_comment, state, file_state]
               pathology_report:
                 type: object
                 source_path: case.sample.pathology_report
-                exclude: [type, project_id, samples, error_type, state_comment, state, file_state, type]
+                exclude: [type, project_id, samples, error_type, state_comment, state, file_state]
   hpo:  # placeholder for now
   gene:  # placeholder for now
 target-models:
