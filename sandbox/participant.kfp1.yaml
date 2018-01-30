@@ -1,0 +1,91 @@
+## this is to try out how to structure HPO and family information in JSON document
+## to support various use cases
+uuid: xxxx
+kf_id: kfp1
+create_at: 2018-01-30
+modified_at: 2018-01-30
+race:
+ethnicity:
+gender: male
+genomic_gender: male
+phonetype:
+  hpo:
+  - age_at_event_days: 325
+    term: HP:0001650  # the most specific term for the participant
+    description: Aortic valve stenosis
+    applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+    - HP:0001650  # Aortic valve stenosis  ## should not include if ancestral terms only
+    - HP:0001646  # Abnormality of the aortic valve
+    - HP:0001654  # Abnormality of the heart valves
+    - HP:0001627  # Abnormal heart morphology
+    - HP:0030680  # Abnormality of cardiovascular system morphology
+    - HP:0001626  # Abnormality of the cardiovascular system
+    - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+    - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+diagnosis:
+  icd_10:
+  - age_at_event_days: 325
+    term: I06.0
+    description: Rheumatic aortic stenosis
+family:
+  family_id: fm111
+  # enum: paternal_duo, maternal_duo, complete_trio, complete_trio_plus_sibling, twin
+  # depends on use case
+  composition_type: complete_trio_plus_sibling
+  self: son  # if the current participant is father in the family, then father; does not for multi-generation family
+  available_data_types:  # only populate when all family members have the data type available
+  - wgs_aligned_seq
+  - germline_variant
+  family_members:
+  - relationship: father
+    uuid: xxxxyyy
+    kf_id: kfp11
+    phenotype:
+      hpo:
+      - age_at_event_days: 1225
+        shared_term: [ "HP:0001627" ]  # lowest common HPO term
+        shared_term_exist: true
+        term: HP:0001654  # the most specific term for the participant
+        description: Aortic valve stenosis
+        applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+        - HP:0001654  # Abnormality of the heart valves
+        - HP:0001627  # Abnormal heart morphology
+        - HP:0030680  # Abnormality of cardiovascular system morphology
+        - HP:0001626  # Abnormality of the cardiovascular system
+        - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+        - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+    available_data_types:  # needs to come up with a controlled list of data types
+    - wgs_aligned_seq
+    - germline_variant
+  - relationship: mother
+    uuid: xxxxyyyzz
+    kf_id: kfp12
+    phenotype:
+      hpo: null
+    available_data_types:  # needs to come up with a controlled list of data types
+    - wgs_aligned_seq
+    - germline_variant
+  - relationship: monozygotic_twin_brother
+    uuid: xxxxyyyzzzz
+    kf_id: kfp2
+    phenotype:
+      hpo:
+      - age_at_event_days: 625
+        shared_term: [ "HP:0001654" ]  # lowest common HPO term
+        term: HP:0001654  # the most specific term for the participant
+        description: Aortic valve stenosis
+        applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+        - HP:0001654  # Abnormality of the heart valves
+        - HP:0001627  # Abnormal heart morphology
+        - HP:0030680  # Abnormality of cardiovascular system morphology
+        - HP:0001626  # Abnormality of the cardiovascular system
+        - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+        - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+    available_data_types:  # needs to come up with a controlled list of data types
+    - wgs_aligned_seq
+    - germline_variant
+    - germline_copy_number
+available_data_types:  # needs to come up with a controlled list of data types
+- wgs_aligned_seq
+- germline_variant
+- germline_copy_number
