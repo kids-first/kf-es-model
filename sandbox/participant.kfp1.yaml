@@ -31,7 +31,7 @@ family:
   family_id: fm111
   # enum: paternal_duo, maternal_duo, complete_trio, complete_trio_plus_sibling, twin
   # depends on use case
-  composition_type: complete_trio_plus_sibling
+  composition_type: complete_trio_plus_twin
   self: son  # if the current participant is father in the family, then father; does not for multi-generation family
   available_data_types:  # only populate when all family members have the data type available
   - wgs_aligned_seq

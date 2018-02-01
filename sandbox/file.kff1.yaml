@@ -1,0 +1,140 @@
+uuid:
+kf_id:
+dos_id:
+file_name:
+file_size:
+file_format:
+file_url:
+md5sum:
+participant:
+- uuid: xxxx
+  kf_id: kfp1
+  create_at: 2018-01-30
+  modified_at: 2018-01-30
+  race:
+  ethnicity:
+  gender: male
+  genomic_gender: male
+  phonetype:
+    hpo:
+    - age_at_event_days: 325
+      term: HP:0001650  # the most specific term for the participant
+      description: Aortic valve stenosis
+      applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+      - HP:0001650  # Aortic valve stenosis  ## should not include if ancestral terms only
+      - HP:0001646  # Abnormality of the aortic valve
+      - HP:0001654  # Abnormality of the heart valves
+      - HP:0001627  # Abnormal heart morphology
+      - HP:0030680  # Abnormality of cardiovascular system morphology
+      - HP:0001626  # Abnormality of the cardiovascular system
+      - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+      - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+  diagnosis:
+  - age_at_event_days: 325
+    diagnosis:   # free text
+  outcome:
+  - age_at_event_days: 325
+    outcome:   # free text
+  family:
+    family_id: fm111
+    # enum: paternal_duo, maternal_duo, complete_trio, complete_trio_plus_sibling, twin
+    # depends on use case
+    composition_type: complete_trio_plus_sibling
+    self: son  # if the current participant is father in the family, then father; does not for multi-generation family
+    available_data_types:  # only populate when all family members have the data type available
+    - wgs_aligned_seq
+    - germline_variant
+    family_members:
+    - relationship: father
+      uuid: xxxxyyy
+      kf_id: kfp11
+      phenotype:
+        hpo:
+        - age_at_event_days: 1225
+          shared_term: [ "HP:0001627" ]  # lowest common HPO term
+          shared_term_exist: true
+          term: HP:0001654  # the most specific term for the participant
+          description: Aortic valve stenosis
+          applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+          - HP:0001654  # Abnormality of the heart valves
+          - HP:0001627  # Abnormal heart morphology
+          - HP:0030680  # Abnormality of cardiovascular system morphology
+          - HP:0001626  # Abnormality of the cardiovascular system
+          - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+          - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+      available_data_types:  # needs to come up with a controlled list of data types
+      - wgs_aligned_seq
+      - germline_variant
+    - relationship: mother
+      uuid: xxxxyyyzz
+      kf_id: kfp12
+      phenotype:
+        hpo: null
+      available_data_types:  # needs to come up with a controlled list of data types
+      - wgs_aligned_seq
+      - germline_variant
+    - relationship: monozygotic_twin_brother
+      uuid: xxxxyyyzzzz
+      kf_id: kfp2
+      phenotype:
+        hpo:
+        - age_at_event_days: 625
+          shared_term: [ "HP:0001654" ]  # lowest common HPO term
+          term: HP:0001654  # the most specific term for the participant
+          description: Aortic valve stenosis
+          applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+          - HP:0001654  # Abnormality of the heart valves
+          - HP:0001627  # Abnormal heart morphology
+          - HP:0030680  # Abnormality of cardiovascular system morphology
+          - HP:0001626  # Abnormality of the cardiovascular system
+          - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
+          - HP:0000001  # All  ## probably shouldn't include this one, it's useless
+      available_data_types:  # needs to come up with a controlled list of data types
+      - wgs_aligned_seq
+      - germline_variant
+      - germline_copy_number
+  available_data_types:  # needs to come up with a controlled list of data types
+  - wgs_aligned_seq
+  - germline_variant
+  - germline_copy_number
+  sample:
+  - kf_id:
+    study:
+    - kf_id:
+      name:
+    composition:
+    tissue_type:
+    anatomical_site:
+    age_at_event_days:
+    aliquot:
+    - kf_id:
+      shipment_origin:
+      shipment_destination:
+      shipment_date:
+      concentration:
+      volumn:
+sequencing_experiment:  # this may need to be an array if need to support the case a file is derived from multiple experiment
+  kf_id:
+  uuid:
+  experiment_date:
+  experimental_strategy:
+  center:
+  platform:
+  instrument_model:
+  library_name:
+  library_strand:
+  is_paired_end:
+  max_insert_size:
+  mean_insert_size:
+  min_insert_size:
+  mean_depth:
+  mean_read_length:
+  total_reads:
+analysis:
+  kf_id:
+  uuid:
+  workflow_name:
+  workflow_version:
+  github_url:
+  input_files:  # list of file_id, may not be needed
+  output_files:  # list of file_id, may not be needed
