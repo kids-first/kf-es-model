@@ -5,16 +5,22 @@ file_name:
 file_size:
 file_format:
 file_url:
+data_type:  # to be confirmed
+data_category:  # to be confirmed
 md5sum:
 participant:
 - uuid: xxxx
   kf_id: kfp1
   create_at: 2018-01-30
   modified_at: 2018-01-30
+  study:
+    - study_id: study1
+      proband: true
+    - study_id: study2
+      proband: false
   race:
   ethnicity:
   gender: male
-  genomic_gender: male
   phonetype:
     hpo:
     - age_at_event_days: 325
@@ -31,19 +37,18 @@ participant:
       - HP:0000001  # All  ## probably shouldn't include this one, it's useless
   diagnosis:
   - age_at_event_days: 325
-    diagnosis:   # free text
-  outcome:
-  - age_at_event_days: 325
-    outcome:   # free text
+    diagnosis:
+      disease_type:
+      tumor_location:  # primary_site
   family:
     family_id: fm111
-    # enum: paternal_duo, maternal_duo, complete_trio, complete_trio_plus_sibling, twin
+    # enum: paternal_duo, maternal_duo, complete_trio, twin
     # depends on use case
-    composition_type: complete_trio_plus_sibling
-    self: son  # if the current participant is father in the family, then father; does not for multi-generation family
+    composition: complete_trio  # from proband's perspective, not applicable to non-proband family members
     available_data_types:  # only populate when all family members have the data type available
     - wgs_aligned_seq
     - germline_variant
+    shared_hpo_terms: [ "HP:0001627" ]  # term shared between proband and any other family member
     family_members:
     - relationship: father
       uuid: xxxxyyy
@@ -51,11 +56,11 @@ participant:
       phenotype:
         hpo:
         - age_at_event_days: 1225
-          shared_term: [ "HP:0001627" ]  # lowest common HPO term
-          shared_term_exist: true
+          shared_terms: [ "HP:0001627" ]  # lowest common HPO term
+          shared_term_exist: true  # not completely sure whether we need this
           term: HP:0001654  # the most specific term for the participant
           description: Aortic valve stenosis
-          applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+          ancestral_terms:
           - HP:0001654  # Abnormality of the heart valves
           - HP:0001627  # Abnormal heart morphology
           - HP:0030680  # Abnormality of cardiovascular system morphology
@@ -79,10 +84,10 @@ participant:
       phenotype:
         hpo:
         - age_at_event_days: 625
-          shared_term: [ "HP:0001654" ]  # lowest common HPO term
+          shared_terms: [ "HP:0001654" ]  # lowest common HPO term
           term: HP:0001654  # the most specific term for the participant
           description: Aortic valve stenosis
-          applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+          ancestral_terms:
           - HP:0001654  # Abnormality of the heart valves
           - HP:0001627  # Abnormal heart morphology
           - HP:0030680  # Abnormality of cardiovascular system morphology
