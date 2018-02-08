@@ -5,9 +5,9 @@ mappings:
         type: "boolean"
       created_at:
         type: "date"
-      #data_category:  # not available in data service source yet
+      #data_category:  # not available in data service source, will decide later whether need it or not
       #  type: "keyword"
-      data_type:  # change 'file_type' to 'data_type'? not available in data service source yet
+      data_type:  # changed 'file_type' to 'data_type', not available in data service source yet
         type: "keyword"
       file_format:
         type: "keyword"
@@ -15,8 +15,6 @@ mappings:
         type: "text"
       file_size:
         type: "long"
-      file_type:  # change to 'data_type'?
-        type: "keyword"
       file_url:
         type: "text"
       kf_id:
