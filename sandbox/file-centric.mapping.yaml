@@ -1,25 +1,25 @@
 mappings:
   doc:
     properties:
-      #workflow:  # not available yet in the source
-      #  properties:
-      #    github_url:
-      #      type: "text"
-      #    input_files:
-      #      type: "text"
-      #    kf_id:
-      #      type: "keyword"
-      #    output_files:
-      #      type: "text"
-      #    workflow_name:
-      #      type: "keyword"
-      #    workflow_version:
-      #      type: "keyword"
+      workflow:  # not available yet in the source
+        properties:
+          github_url:
+            type: "text"
+          input_files:
+            type: "text"
+          kf_id:
+            type: "keyword"
+          output_files:
+            type: "text"
+          workflow_name:
+            type: "keyword"
+          workflow_version:
+            type: "keyword"
       created_at:
         type: "date"
       #data_category:  # not available in data service source yet
       #  type: "keyword"
-      data_type:  # not available in data service source yet
+      data_type:  # change 'file_type' to 'data_type' available in data service source yet
         type: "keyword"
       file_format:
         type: "keyword"
