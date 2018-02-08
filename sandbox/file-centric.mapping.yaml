@@ -21,8 +21,6 @@ mappings:
       #  type: "keyword"
       #data_type:  # not available in data service source yet
       #  type: "keyword"
-      #dos_id:   # not available yet
-      #  type: "keyword"
       file_format:
         type: "keyword"
       file_name:
@@ -39,7 +37,7 @@ mappings:
         type: "keyword"
       modified_at:
         type: "date"
-      participant:
+      participants:
         type: nested
         properties:
           available_data_types:  # all data types the current participant has, not available in the source yet
