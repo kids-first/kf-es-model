@@ -1,7 +1,7 @@
 mappings:
   doc:
     properties:
-      #analysis:  # corresponding to Workflow table, not available yet in the source
+      #workflow:  # not available yet in the source
       #  properties:
       #    github_url:
       #      type: "text"
@@ -19,8 +19,8 @@ mappings:
         type: "date"
       #data_category:  # not available in data service source yet
       #  type: "keyword"
-      #data_type:  # not available in data service source yet
-      #  type: "keyword"
+      data_type:  # not available in data service source yet
+        type: "keyword"
       file_format:
         type: "keyword"
       file_name:
@@ -53,10 +53,8 @@ mappings:
                 type: "date"
               diagnosis:
                 type: "text"
-              #disease_category:  # Birth Defects or Cancer. not available yet
-              #  type: "text"
-              #disease_type:  # Congenital Heart Defects etc etc. not available yet
-              #  type: "text"
+              diagnosis_category:
+                type: "text"
               external_id:
                 type: "keyword"
               modified_at:
@@ -83,6 +81,10 @@ mappings:
                     type: "keyword"
                   created_at:
                     type: "date"
+                  gender:
+                    type: "keyword"
+                  is_proband:
+                    type: "keyword"
                   kf_id:
                     type: "keyword"
                   modified_at:
@@ -107,7 +109,18 @@ mappings:
                             type: "keyword"
                   relationship:
                     type: "keyword"
+                  study:
+                    type: nested
+                    properties:
+                      kf_id:
+                        type: "keyword"
+                      study_name:
+                        type: "text"
+                  uuid:
+                    type: "keyword"
           gender:
+            type: "keyword"
+          is_proband:
             type: "keyword"
           kf_id:
             type: "keyword"
@@ -173,14 +186,10 @@ mappings:
           study:
             type: nested
             properties:
-              is_proband:
-                type: "boolean"
               kf_id:
                 type: "keyword"
               study:
                 type: "text"
-              study_id:
-                type: "keyword"
           uuid:
             type: "keyword"
       sequencing_experiments:
