@@ -1,75 +1,95 @@
 mappings:
   doc:
     properties:
-      analysis:
-        properties:
-          github_url:
-            type: "text"
-          input_files:
-            type: "text"
-          kf_id:
-            type: "keyword"
-          output_files:
-            type: "text"
-          workflow_name:
-            type: "keyword"
-          workflow_version:
-            type: "keyword"
-      data_category:
-        type: "keyword"
-      data_type:
-        type: "keyword"
-      dos_id:
-        type: "keyword"
+      #analysis:  # corresponding to Workflow table, not available yet in the source
+      #  properties:
+      #    github_url:
+      #      type: "text"
+      #    input_files:
+      #      type: "text"
+      #    kf_id:
+      #      type: "keyword"
+      #    output_files:
+      #      type: "text"
+      #    workflow_name:
+      #      type: "keyword"
+      #    workflow_version:
+      #      type: "keyword"
+      created_at:
+        type: "date"
+      #data_category:  # not available in data service source yet
+      #  type: "keyword"
+      #data_type:  # not available in data service source yet
+      #  type: "keyword"
+      #dos_id:   # not available yet
+      #  type: "keyword"
       file_format:
         type: "keyword"
       file_name:
         type: "text"
       file_size:
         type: "long"
+      file_type:
+        type: "keyword"
       file_url:
         type: "text"
       kf_id:
         type: "keyword"
       md5sum:
         type: "keyword"
+      modified_at:
+        type: "date"
       participant:
         type: nested
         properties:
-          available_data_types:
+          available_data_types:  # all data types the current participant has, not available in the source yet
             type: "keyword"
-          create_at:
+          created_at:
             type: "date"
           diagnosis:
             type: nested  # possibly array
             properties:
               age_at_event_days:
                 type: "long"
-              disease_category:
+              created_at:
+                type: "date"
+              diagnosis:
                 type: "text"
-              disease_type:
-                type: "text"
-          family:
+              #disease_category:  # Birth Defects or Cancer. not available yet
+              #  type: "text"
+              #disease_type:  # Congenital Heart Defects etc etc. not available yet
+              #  type: "text"
+              external_id:
+                type: "keyword"
+              modified_at:
+                type: "date"
+          external_id:
+            type: "keyword"
+          family:  # this is built using familyRelationship table, not available yet in source
             properties:
               family_data:
-                type: nested  # it could be different compositions
+                type: nested  # it could be different compositions for one participant
                 properties:
-                  available_data_types:
+                  available_data_types:  # data available for all members in the composition
                     type: "keyword"
-                  composition:
+                  composition:  # family composition, could be trio, duo, twin, other
                     type: "keyword"
-                  shared_hpo_terms:
+                  shared_hpo_terms:  # lowest HPO term(s) current participant shared with any other member(s) in the composition
                     type: "keyword"
-              family_id:
+              family_id:  # expect to be on the participant table, not available yet in source
                 type: "keyword"
-              family_members:
+              family_members:  # family_members with the current participant
                 type: nested
                 properties:
-                  available_data_types:
+                  available_data_types:  # all available data for the current family member, not available in the source yet
                     type: "keyword"
+                  created_at:
+                    type: "date"
                   kf_id:
                     type: "keyword"
-                  phenotype:
+                  modified_at:
+                    type: "date"
+                  phenotype:  # not available yet in the source
                     properties:
                       hpo:
                         properties:
@@ -77,9 +97,15 @@ mappings:
                             type: "long"
                           ancestral_terms:
                             type: "keyword"
-                          shared_terms:
+                          created_at:
+                            type: "date"
+                          modified_at:
+                            type: "date"
+                          negative_terms:  # HPO term(s) to the current family memeber does not have
                             type: "keyword"
-                          terms:
+                          shared_terms:  # HPO term(s) shared between current participant and family memeber
+                            type: "keyword"
+                          terms:  # HPO term(s) assigned to the current family memeber
                             type: "keyword"
                   relationship:
                     type: "keyword"
@@ -89,7 +115,7 @@ mappings:
             type: "keyword"
           modified_at:
             type: "date"
-          phonetype:
+          phenotype:  # not available yet in the source
             properties:
               hpo:  # this could be nested, but for mvp, lets go with object
                 properties:
@@ -97,34 +123,54 @@ mappings:
                     type: "long"
                   ancestral_terms:
                     type: "keyword"
-                  terms:
+                  created_at:
+                    type: "date"
+                  modified_at:
+                    type: "date"
+                  negative_terms:  # HPO term(s) to the current participant does not have
                     type: "keyword"
-          sample:
+                  terms:  # HPO term(s) assigned to the current participant
+                    type: "keyword"
+          samples:
             type: nested
             properties:
               age_at_event_days:
                 type: "long"
-              aliquot:
+              aliquots:
                 properties:
+                  analyte_type:
+                    type: "keyword"
+                  created_at:
+                    type: "date"
                   concentration:
                     type: "float"
                   kf_id:
                     type: "keyword"
+                  modified_at:
+                    type: "date"
                   shipment_date:
                     type: "date"
                   shipment_destination:
                     type: "keyword"
                   shipment_origin:
                     type: "keyword"
-                  volumn:
+                  volume:
                     type: "float"
+                  uuid:
+                    type: "keyword"
               anatomical_site:
                 type: "keyword"
               composition:
                 type: "keyword"
+              external_id:
+                type: "keyword"
               kf_id:
                 type: "keyword"
               tissue_type:
+                type: "keyword"
+              tumor_descriptor:
+                type: "keyword"
+              uuid:
                 type: "keyword"
           study:
             type: nested
@@ -137,14 +183,18 @@ mappings:
                 type: "text"
               study_id:
                 type: "keyword"
-      sequencing_experiment:
+          uuid:
+            type: "keyword"
+      sequencing_experiments:
         type: nested  # is this nested? do we have multiple experiments for one file, it could, eg, somatic call from tumor / normal pair
         properties:
           center:
             type: "keyword"
           experiment_date:
             type: "date"
-          experimental_strategy:
+          experiment_strategy:
+            type: "keyword"
+          external_id:
             type: "keyword"
           instrument_model:
             type: "keyword"
@@ -170,6 +220,8 @@ mappings:
             type: "keyword"
           total_reads:
             type: "long"
+      uuid:
+        type: "keyword"
 settings:
   analysis:
     analyzer:
