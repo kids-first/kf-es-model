@@ -1,25 +1,13 @@
 mappings:
   doc:
     properties:
-      workflow:  # not available yet in the source
-        properties:
-          github_url:
-            type: "text"
-          input_files:
-            type: "text"
-          kf_id:
-            type: "keyword"
-          output_files:
-            type: "text"
-          workflow_name:
-            type: "keyword"
-          workflow_version:
-            type: "keyword"
+      controlled_access:
+        type: "boolean"
       created_at:
         type: "date"
       #data_category:  # not available in data service source yet
       #  type: "keyword"
-      data_type:  # change 'file_type' to 'data_type' available in data service source yet
+      data_type:  # change 'file_type' to 'data_type'? not available in data service source yet
         type: "keyword"
       file_format:
         type: "keyword"
@@ -27,7 +15,7 @@ mappings:
         type: "text"
       file_size:
         type: "long"
-      file_type:
+      file_type:  # change to 'data_type'?
         type: "keyword"
       file_url:
         type: "text"
@@ -84,7 +72,7 @@ mappings:
                   gender:
                     type: "keyword"
                   is_proband:
-                    type: "keyword"
+                    type: "boolean"
                   kf_id:
                     type: "keyword"
                   modified_at:
@@ -121,7 +109,7 @@ mappings:
           gender:
             type: "keyword"
           is_proband:
-            type: "keyword"
+            type: "boolean"
           kf_id:
             type: "keyword"
           modified_at:
@@ -227,6 +215,20 @@ mappings:
             type: "keyword"
           total_reads:
             type: "long"
+      workflow:  # not available yet in the source
+        properties:
+          github_url:
+            type: "text"
+          input_files:
+            type: "text"
+          kf_id:
+            type: "keyword"
+          output_files:
+            type: "text"
+          workflow_name:
+            type: "keyword"
+          workflow_version:
+            type: "keyword"
       uuid:
         type: "keyword"
 settings:
