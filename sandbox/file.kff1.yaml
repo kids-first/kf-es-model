@@ -1,32 +1,33 @@
-uuid:
-kf_id:
-dos_id:
-file_name:
-file_size:
-file_format:
-file_url:
-data_type:  # to be confirmed
-data_category:  # to be confirmed
-md5sum:
+uuid: 9525a5b9-e8cf-4dd7-b4f3-45ab5ce9bf5c
+kf_id: KFF1001
+dos_id: 7e436b95-fb0a-4a5c-9a2f-a5c83f4ee72a
+file_name: bddfa.bam
+file_size: 323552
+file_format: BAM
+file_url: xxxxxxx
+data_type:  Aligned BAM
+data_category:  Sequencing Reads
+md5sum: 68b329da9893e34099c7d8ad5cb9c940
 participant:
 - uuid: xxxx
-  kf_id: kfp1
+  kf_id: KFP10
   create_at: 2018-01-30
   modified_at: 2018-01-30
   study:
-    - study_id: study1
-      proband: true
+    - kf_id: study1
+      study: Name of study 1
+      is_proband: true
     - study_id: study2
-      proband: false
+      study: Name of study 2
+      is_proband: false
   race:
   ethnicity:
   gender: male
   phonetype:
     hpo:
-    - age_at_event_days: 325
-      term: HP:0001650  # the most specific term for the participant
-      description: Aortic valve stenosis
-      applicable_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
+      age_at_event_days: [ 325 ]  # we merger multiple events here, may not be able to support longitudinal use cases properly
+      terms: [ "HP:0001650" ]  # the most specific term for the participant
+      ancestral_terms:  # horrible name here, alternative: ancestral_terms? all_terms?
       - HP:0001650  # Aortic valve stenosis  ## should not include if ancestral terms only
       - HP:0001646  # Abnormality of the aortic valve
       - HP:0001654  # Abnormality of the heart valves
@@ -34,45 +35,47 @@ participant:
       - HP:0030680  # Abnormality of cardiovascular system morphology
       - HP:0001626  # Abnormality of the cardiovascular system
       - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
-      - HP:0000001  # All  ## probably shouldn't include this one, it's useless
   diagnosis:
-  - age_at_event_days: 325
-    diagnosis:
-      disease_type:
-      tumor_location:  # primary_site
+    age_at_event_days: [ 325 ]
+    disease_category: Birth Defects  # or Cancer
+    disease_type: Congenital Heart Defects
+    tumor_location:  null # primary_site
   family:
-    family_id: fm111
+    family_id: FKFM111
     # enum: paternal_duo, maternal_duo, complete_trio, twin
     # depends on use case
-    composition: complete_trio  # from proband's perspective, not applicable to non-proband family members
-    available_data_types:  # only populate when all family members have the data type available
-    - wgs_aligned_seq
-    - germline_variant
-    shared_hpo_terms: [ "HP:0001627" ]  # term shared between proband and any other family member
+    family_data:
+    - composition: complete_trio  # from the whole family point of view, applicable to all family members, one participant can have multiple values
+      available_data_types:  # only populate when all family members have the data type available
+      - wgs_aligned_seq
+      - germline_variant
+      shared_hpo_terms:
+      - "HP:0001627"
+    - composition: twin  # from the whole family point of view, applicable to all family members, one participant can have multiple values
+      available_data_types:  # only populate when all family members have the data type available
+      - wgs_aligned_seq
+      shared_hpo_terms:
+      - "HP:0001627"
     family_members:
     - relationship: father
-      uuid: xxxxyyy
-      kf_id: kfp11
+      kf_id: KFP11
       phenotype:
         hpo:
-        - age_at_event_days: 1225
+          age_at_event_days: [ 1225 ]
           shared_terms: [ "HP:0001627" ]  # lowest common HPO term
-          shared_term_exist: true  # not completely sure whether we need this
-          term: HP:0001654  # the most specific term for the participant
-          description: Aortic valve stenosis
+          # shared_term_exist: true  # not completely sure whether we need this
+          terms: [ "HP:0001654" ]  # the most specific term for the participant
           ancestral_terms:
           - HP:0001654  # Abnormality of the heart valves
           - HP:0001627  # Abnormal heart morphology
           - HP:0030680  # Abnormality of cardiovascular system morphology
           - HP:0001626  # Abnormality of the cardiovascular system
           - HP:0000118  # Phenotypic abnormality  ## could use this to flag participant as normal or not
-          - HP:0000001  # All  ## probably shouldn't include this one, it's useless
       available_data_types:  # needs to come up with a controlled list of data types
       - wgs_aligned_seq
       - germline_variant
     - relationship: mother
-      uuid: xxxxyyyzz
-      kf_id: kfp12
+      kf_id: KFP12
       phenotype:
         hpo: null
       available_data_types:  # needs to come up with a controlled list of data types
@@ -80,13 +83,12 @@ participant:
       - germline_variant
     - relationship: monozygotic_twin_brother
       uuid: xxxxyyyzzzz
-      kf_id: kfp2
+      kf_id: KFP20
       phenotype:
         hpo:
-        - age_at_event_days: 625
+          age_at_event_days: [ 625 ]
           shared_terms: [ "HP:0001654" ]  # lowest common HPO term
-          term: HP:0001654  # the most specific term for the participant
-          description: Aortic valve stenosis
+          terms: [ "HP:0001654"]  # the most specific term for the participant
           ancestral_terms:
           - HP:0001654  # Abnormality of the heart valves
           - HP:0001627  # Abnormal heart morphology
@@ -103,43 +105,40 @@ participant:
   - germline_variant
   - germline_copy_number
   sample:
-  - kf_id:
-    study:
-    - kf_id:
-      name:
-    composition:
-    tissue_type:
-    anatomical_site:
-    age_at_event_days:
+  - kf_id: KFS1111
+    composition: xxxx
+    tissue_type:  yyyy
+    anatomical_site:   zzz
+    age_at_event_days: 132
     aliquot:
-    - kf_id:
-      shipment_origin:
-      shipment_destination:
-      shipment_date:
-      concentration:
-      volumn:
+    - kf_id: KFA222
+      shipment_origin: Chop
+      shipment_destination: Broad
+      shipment_date: 2018-01-07
+      concentration: 32.34
+      volumn: 13.23
 sequencing_experiment:  # this may need to be an array if need to support the case a file is derived from multiple experiment
-  kf_id:
-  uuid:
-  experiment_date:
-  experimental_strategy:
-  center:
-  platform:
-  instrument_model:
-  library_name:
-  library_strand:
-  is_paired_end:
-  max_insert_size:
-  mean_insert_size:
-  min_insert_size:
-  mean_depth:
-  mean_read_length:
-  total_reads:
+  kf_id: FKEXP12345
+  experiment_date: 2018-02-07
+  experimental_strategy: WGS
+  center: abc
+  platform: Illumina
+  instrument_model: HiSeq 2000
+  library_name: XYZ
+  library_strand: positive
+  is_paired_end: true
+  max_insert_size: 400
+  mean_insert_size: 350
+  min_insert_size: 300
+  mean_depth: 35
+  mean_read_length: 100
+  total_reads: 25000000
 analysis:
-  kf_id:
-  uuid:
-  workflow_name:
-  workflow_version:
-  github_url:
-  input_files:  # list of file_id, may not be needed
-  output_files:  # list of file_id, may not be needed
+  kf_id: KFANA12345
+  workflow_name: BWA MEM Aligner
+  workflow_version: v0.1.3
+  github_url: https:xxxx
+  input_files:
+    - "37863067-b4e7-49f4-9e39-3aca716a1196" # list of file_id, may not be needed
+  output_files:
+    - "ece3bd05-1988-45b7-a036-dfb353250318" # list of file_id, may not be needed

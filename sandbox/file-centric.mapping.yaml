@@ -1,0 +1,197 @@
+mappings:
+  doc:
+    properties:
+      analysis:
+        properties:
+          github_url:
+            type: "text"
+          input_files:
+            type: "text"
+          kf_id:
+            type: "keyword"
+          output_files:
+            type: "text"
+          workflow_name:
+            type: "keyword"
+          workflow_version:
+            type: "keyword"
+      data_category:
+        type: "keyword"
+      data_type:
+        type: "keyword"
+      dos_id:
+        type: "keyword"
+      file_format:
+        type: "keyword"
+      file_name:
+        type: "text"
+      file_size:
+        type: "long"
+      file_url:
+        type: "text"
+      kf_id:
+        type: "keyword"
+      md5sum:
+        type: "keyword"
+      participant:
+        type: nested
+        properties:
+          available_data_types:
+            type: "keyword"
+          create_at:
+            type: "date"
+          diagnosis:
+            type: nested  # possibly array
+            properties:
+              age_at_event_days:
+                type: "long"
+              disease_category:
+                type: "text"
+              disease_type:
+                type: "text"
+          family:
+            properties:
+              family_data:
+                type: nested  # it could be different compositions
+                properties:
+                  available_data_types:
+                    type: "keyword"
+                  composition:
+                    type: "keyword"
+                  shared_hpo_terms:
+                    type: "keyword"
+              family_id:
+                type: "keyword"
+              family_members:
+                type: nested
+                properties:
+                  available_data_types:
+                    type: "keyword"
+                  kf_id:
+                    type: "keyword"
+                  phenotype:
+                    properties:
+                      hpo:
+                        properties:
+                          age_at_event_days:
+                            type: "long"
+                          ancestral_terms:
+                            type: "keyword"
+                          shared_terms:
+                            type: "keyword"
+                          terms:
+                            type: "keyword"
+                  relationship:
+                    type: "keyword"
+          gender:
+            type: "keyword"
+          kf_id:
+            type: "keyword"
+          modified_at:
+            type: "date"
+          phonetype:
+            properties:
+              hpo:  # this could be nested, but for mvp, lets go with object
+                properties:
+                  age_at_event_days:
+                    type: "long"
+                  ancestral_terms:
+                    type: "keyword"
+                  terms:
+                    type: "keyword"
+          sample:
+            type: nested
+            properties:
+              age_at_event_days:
+                type: "long"
+              aliquot:
+                properties:
+                  concentration:
+                    type: "float"
+                  kf_id:
+                    type: "keyword"
+                  shipment_date:
+                    type: "date"
+                  shipment_destination:
+                    type: "keyword"
+                  shipment_origin:
+                    type: "keyword"
+                  volumn:
+                    type: "float"
+              anatomical_site:
+                type: "keyword"
+              composition:
+                type: "keyword"
+              kf_id:
+                type: "keyword"
+              tissue_type:
+                type: "keyword"
+          study:
+            type: nested
+            properties:
+              is_proband:
+                type: "boolean"
+              kf_id:
+                type: "keyword"
+              study:
+                type: "text"
+              study_id:
+                type: "keyword"
+      sequencing_experiment:
+        type: nested  # is this nested? do we have multiple experiments for one file, it could, eg, somatic call from tumor / normal pair
+        properties:
+          center:
+            type: "keyword"
+          experiment_date:
+            type: "date"
+          experimental_strategy:
+            type: "keyword"
+          instrument_model:
+            type: "keyword"
+          is_paired_end:
+            type: "boolean"
+          kf_id:
+            type: "keyword"
+          library_name:
+            type: "keyword"
+          library_strand:
+            type: "keyword"
+          max_insert_size:
+            type: "long"
+          mean_depth:
+            type: "long"
+          mean_insert_size:
+            type: "long"
+          mean_read_length:
+            type: "long"
+          min_insert_size:
+            type: "long"
+          platform:
+            type: "keyword"
+          total_reads:
+            type: "long"
+settings:
+  analysis:
+    analyzer:
+      autocomplete_analyzed:
+        filter:
+        - lowercase
+        - edge_ngram
+        tokenizer: standard
+      autocomplete_prefix:
+        filter:
+        - lowercase
+        - edge_ngram
+        tokenizer: keyword
+      lowercase_keyword:
+        filter:
+        - lowercase
+        tokenizer: keyword
+    filter:
+      edge_ngram:
+        max_gram: '20'
+        min_gram: '1'
+        side: front
+        type: edge_ngram
+  index.mapping.nested_fields.limit: 100
+  index.max_result_window: 100000000
