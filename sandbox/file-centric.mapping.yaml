@@ -40,11 +40,19 @@ mappings:
               diagnosis:
                 type: "text"
               diagnosis_category:
-                type: "text"
+                type: "keyword"
               external_id:
+                type: "keyword"
+              kf_id:
                 type: "keyword"
               modified_at:
                 type: "date"
+              tumor_location:
+                type: "keyword"
+              uuid:
+                type: "keyword"
+          ethnicity:
+            type: "keyword"
           external_id:
             type: "keyword"
           family:  # this is built using familyRelationship table, not available yet in source
@@ -56,7 +64,7 @@ mappings:
                     type: "keyword"
                   composition:  # family composition, could be trio, duo, twin, other
                     type: "keyword"
-                  shared_hpo_terms:  # lowest HPO term(s) current participant shared with any other member(s) in the composition
+                  shared_hpo_ids:  # lowest HPO term(s) current participant shared with any other member(s) in the composition
                     type: "keyword"
               family_id:  # expect to be on the participant table, not available yet in source
                 type: "keyword"
@@ -67,6 +75,29 @@ mappings:
                     type: "keyword"
                   created_at:
                     type: "date"
+                  diagnosis:
+                    type: nested  # possibly array
+                    properties:
+                      age_at_event_days:
+                        type: "long"
+                      created_at:
+                        type: "date"
+                      diagnosis:
+                        type: "text"
+                      diagnosis_category:
+                        type: "keyword"
+                      external_id:
+                        type: "keyword"
+                      kf_id:
+                        type: "keyword"
+                      modified_at:
+                        type: "date"
+                      tumor_location:
+                        type: "keyword"
+                      uuid:
+                        type: "keyword"
+                  ethnicity:
+                    type: "keyword"
                   gender:
                     type: "keyword"
                   is_proband:
@@ -81,27 +112,45 @@ mappings:
                         properties:
                           age_at_event_days:
                             type: "long"
-                          ancestral_terms:
+                          ancestral_hpo_ids:
                             type: "keyword"
                           created_at:
                             type: "date"
                           modified_at:
                             type: "date"
-                          negative_terms:  # HPO term(s) to the current family memeber does not have
+                          observed:
+                            type: "text"
+                          phenotype:
+                            type: "text"
+                          negative_hpo_ids:  # HPO term(s) to the current participant does not have
                             type: "keyword"
-                          shared_terms:  # HPO term(s) shared between current participant and family memeber
+                          hpo_ids:  # HPO term(s) assigned to the current participant
                             type: "keyword"
-                          terms:  # HPO term(s) assigned to the current family memeber
+                          shared_hpo_ids:  # HPO term(s) shared between current participant and family memeber
                             type: "keyword"
+                  race:
+                    type: "keyword"
                   relationship:
                     type: "keyword"
                   study:
                     type: nested
                     properties:
+                      attribution:
+                        type: "text"
+                      created_at:
+                        type: "date"
+                      external_id:
+                        type: "keyword"
                       kf_id:
                         type: "keyword"
-                      study_name:
+                      modified_at:
+                        type: "date"
+                      name:
                         type: "text"
+                      version:
+                        type: "keyword"
+                      uuid:
+                        type: "keyword"
                   uuid:
                     type: "keyword"
           gender:
@@ -118,16 +167,22 @@ mappings:
                 properties:
                   age_at_event_days:
                     type: "long"
-                  ancestral_terms:
+                  ancestral_hpo_ids:
                     type: "keyword"
                   created_at:
                     type: "date"
                   modified_at:
                     type: "date"
-                  negative_terms:  # HPO term(s) to the current participant does not have
+                  observed:
+                    type: "text"
+                  phenotype:
+                    type: "text"
+                  negative_hpo_ids:  # HPO term(s) to the current participant does not have
                     type: "keyword"
-                  terms:  # HPO term(s) assigned to the current participant
+                  hpo_ids:  # HPO term(s) assigned to the current participant
                     type: "keyword"
+          race:
+            type: "keyword"
           samples:
             type: nested
             properties:
@@ -172,10 +227,22 @@ mappings:
           study:
             type: nested
             properties:
+              attribution:
+                type: "text"
+              created_at:
+                type: "date"
+              external_id:
+                type: "keyword"
               kf_id:
                 type: "keyword"
-              study:
+              modified_at:
+                type: "date"
+              name:
                 type: "text"
+              version:
+                type: "keyword"
+              uuid:
+                type: "keyword"
           uuid:
             type: "keyword"
       sequencing_experiments:
@@ -183,6 +250,8 @@ mappings:
         properties:
           center:
             type: "keyword"
+          created_at:
+            type: "date"
           experiment_date:
             type: "date"
           experiment_strategy:
@@ -209,23 +278,35 @@ mappings:
             type: "long"
           min_insert_size:
             type: "long"
+          modified_at:
+            type: "date"
           platform:
             type: "keyword"
           total_reads:
             type: "long"
+          uuid:
+            type: "keyword"
       workflow:  # not available yet in the source
         properties:
+          created_at:
+            type: "date"
           github_url:
             type: "text"
-          input_files:
-            type: "text"
+          input_files:  # list of input file uuids
+            type: "keyword"
           kf_id:
             type: "keyword"
-          output_files:
-            type: "text"
-          workflow_name:
+          modified_at:
+            type: "date"
+          output_files:  # list of output file uuids
             type: "keyword"
-          workflow_version:
+          task_id:
+            type: "keyword"
+          name:
+            type: "keyword"
+          version:
+            type: "keyword"
+          uuid:
             type: "keyword"
       uuid:
         type: "keyword"
