@@ -5,7 +5,7 @@ mappings:
         type: "keyword"
       created_at:
         type: "date"
-      diagnosis:
+      diagnoses:
         type: nested  # possibly array
         properties:
           age_at_event_days:
@@ -96,6 +96,24 @@ mappings:
                 type: "long"
               uuid:
                 type: "keyword"
+          study:  # a file can only belong to one study
+            properties:
+              attribution:
+                type: "text"
+              created_at:
+                type: "date"
+              external_id:
+                type: "keyword"
+              kf_id:
+                type: "keyword"
+              modified_at:
+                type: "date"
+              name:
+                type: "text"
+              version:
+                type: "keyword"
+              uuid:
+                type: "keyword"
           workflow:  # not available yet in the source
             properties:
               created_at:
@@ -140,7 +158,7 @@ mappings:
                 type: "keyword"
               created_at:
                 type: "date"
-              diagnosis:
+              diagnoses:
                 type: nested  # possibly array
                 properties:
                   age_at_event_days:
@@ -197,7 +215,7 @@ mappings:
                 type: "keyword"
               relationship:
                 type: "keyword"
-              study:
+              studies:
                 type: nested
                 properties:
                   attribution:
@@ -289,7 +307,7 @@ mappings:
             type: "keyword"
           uuid:
             type: "keyword"
-      study:
+      studies:
         type: nested
         properties:
           attribution:

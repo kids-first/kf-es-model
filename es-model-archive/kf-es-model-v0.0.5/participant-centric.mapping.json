@@ -8,7 +8,7 @@
         "created_at": {
           "type": "date"
         },
-        "diagnosis": {
+        "diagnoses": {
           "type": "nested",
           "properties": {
             "age_at_event_days": {
@@ -141,6 +141,34 @@
                 }
               }
             },
+            "study": {
+              "properties": {
+                "attribution": {
+                  "type": "text"
+                },
+                "created_at": {
+                  "type": "date"
+                },
+                "external_id": {
+                  "type": "keyword"
+                },
+                "kf_id": {
+                  "type": "keyword"
+                },
+                "modified_at": {
+                  "type": "date"
+                },
+                "name": {
+                  "type": "text"
+                },
+                "version": {
+                  "type": "keyword"
+                },
+                "uuid": {
+                  "type": "keyword"
+                }
+              }
+            },
             "workflow": {
               "properties": {
                 "created_at": {
@@ -208,7 +236,7 @@
                 "created_at": {
                   "type": "date"
                 },
-                "diagnosis": {
+                "diagnoses": {
                   "type": "nested",
                   "properties": {
                     "age_at_event_days": {
@@ -296,7 +324,7 @@
                 "relationship": {
                   "type": "keyword"
                 },
-                "study": {
+                "studies": {
                   "type": "nested",
                   "properties": {
                     "attribution": {
@@ -442,7 +470,7 @@
             }
           }
         },
-        "study": {
+        "studies": {
           "type": "nested",
           "properties": {
             "attribution": {
