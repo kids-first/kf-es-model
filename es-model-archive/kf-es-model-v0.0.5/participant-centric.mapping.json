@@ -1,8 +1,14 @@
 {
   "mappings": {
-    "doc": {
+    "participant-centric": {
       "properties": {
+        "aliases": {
+          "type": "keyword"
+        },
         "available_data_types": {
+          "type": "keyword"
+        },
+        "consent_type": {
           "type": "keyword"
         },
         "created_at": {
@@ -470,14 +476,16 @@
             }
           }
         },
-        "studies": {
-          "type": "nested",
+        "study": {
           "properties": {
             "attribution": {
               "type": "text"
             },
             "created_at": {
               "type": "date"
+            },
+            "data_access_authority": {
+              "type": "keyword"
             },
             "external_id": {
               "type": "keyword"

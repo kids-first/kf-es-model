@@ -1,7 +1,11 @@
 mappings:
-  doc:
+  participant-centric:
     properties:
+      aliases:  # kf_id of other participant(s) that is actually the same as the current one
+        type: "keyword"
       available_data_types:  # all data types the current participant has, not available in the source yet
+        type: "keyword"
+      consent_type:
         type: "keyword"
       created_at:
         type: "date"
@@ -307,13 +311,14 @@ mappings:
             type: "keyword"
           uuid:
             type: "keyword"
-      studies:
-        type: nested
+      study:
         properties:
           attribution:
             type: "text"
           created_at:
             type: "date"
+          data_access_authority:
+            type: "keyword"
           external_id:
             type: "keyword"
           kf_id:
