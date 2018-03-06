@@ -1,5 +1,5 @@
 mappings:
-  participant-centric:
+  participant_centric:
     properties:
       aliases:  # kf_id of other participant(s) that is actually the same as the current one
         type: "keyword"

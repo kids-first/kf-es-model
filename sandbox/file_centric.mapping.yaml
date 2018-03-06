@@ -1,5 +1,5 @@
 mappings:
-  file-centric:
+  file_centric:
     properties:
       controlled_access:
         type: "boolean"

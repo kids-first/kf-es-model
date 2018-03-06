@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "participant-centric": {
+    "participant_centric": {
       "properties": {
         "aliases": {
           "type": "keyword"
