@@ -1,10 +1,11 @@
 mappings:
-  file-centric:
+  file_centric:
     properties:
       controlled_access:
         type: "boolean"
       created_at:
         type: "date"
+        format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
       #data_category:  # not available in data service source, will decide later whether need it or not
       #  type: "keyword"
       data_type:  # changed 'file_type' to 'data_type', not available in data service source yet
@@ -23,6 +24,7 @@ mappings:
         type: "keyword"
       modified_at:
         type: "date"
+        format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
       participants:
         type: nested
         properties:
@@ -34,6 +36,7 @@ mappings:
             type: "keyword"
           created_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           diagnoses:
             type: nested  # possibly array
             properties:
@@ -41,6 +44,7 @@ mappings:
                 type: "long"
               created_at:
                 type: "date"
+                format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
               diagnosis:
                 type: "text"
               diagnosis_category:
@@ -51,6 +55,7 @@ mappings:
                 type: "keyword"
               modified_at:
                 type: "date"
+                format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
               tumor_location:
                 type: "keyword"
               uuid:
@@ -83,6 +88,7 @@ mappings:
                     type: "keyword"
                   created_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   diagnoses:
                     type: nested  # possibly array
                     properties:
@@ -90,6 +96,7 @@ mappings:
                         type: "long"
                       created_at:
                         type: "date"
+                        format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                       diagnosis:
                         type: "text"
                       diagnosis_category:
@@ -100,6 +107,7 @@ mappings:
                         type: "keyword"
                       modified_at:
                         type: "date"
+                        format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                       tumor_location:
                         type: "keyword"
                       uuid:
@@ -114,6 +122,7 @@ mappings:
                     type: "keyword"
                   modified_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   phenotype:
                     properties:
                       hpo:
@@ -124,8 +133,10 @@ mappings:
                             type: "keyword"
                           created_at:
                             type: "date"
+                            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                           modified_at:
                             type: "date"
+                            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                           observed:
                             type: "text"
                           phenotype:
@@ -150,6 +161,7 @@ mappings:
             type: "keyword"
           modified_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           phenotype:  # not available yet in the source
             properties:
               hpo:  # this could be nested, but for mvp, lets go with object
@@ -160,8 +172,10 @@ mappings:
                     type: "keyword"
                   created_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   modified_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   observed:
                     type: "text"
                   phenotype:
@@ -183,14 +197,17 @@ mappings:
                     type: "keyword"
                   created_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   concentration:
                     type: "float"
                   kf_id:
                     type: "keyword"
                   modified_at:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   shipment_date:
                     type: "date"
+                    format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   shipment_destination:
                     type: "keyword"
                   shipment_origin:
@@ -219,6 +236,7 @@ mappings:
                 type: "text"
               created_at:
                 type: "date"
+                format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
               data_access_authority:
                 type: "keyword"
               external_id:
@@ -227,6 +245,7 @@ mappings:
                 type: "keyword"
               modified_at:
                 type: "date"
+                format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
               name:
                 type: "text"
               version:
@@ -242,8 +261,10 @@ mappings:
             type: "keyword"
           created_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           experiment_date:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           experiment_strategy:
             type: "keyword"
           external_id:
@@ -270,6 +291,7 @@ mappings:
             type: "long"
           modified_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           platform:
             type: "keyword"
           total_reads:
@@ -280,6 +302,7 @@ mappings:
         properties:
           created_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           github_url:
             type: "text"
           input_files:  # list of input file uuids
@@ -288,6 +311,7 @@ mappings:
             type: "keyword"
           modified_at:
             type: "date"
+            format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           output_files:  # list of output file uuids
             type: "keyword"
           task_id:
