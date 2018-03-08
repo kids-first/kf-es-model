@@ -164,6 +164,9 @@
                   "type": "date",
                   "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                 },
+                "data_access_authority": {
+                  "type": "keyword"
+                },
                 "external_id": {
                   "type": "keyword"
                 },
@@ -356,6 +359,9 @@
                     "created_at": {
                       "type": "date",
                       "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
+                    },
+                    "data_access_authority": {
+                      "type": "keyword"
                     },
                     "external_id": {
                       "type": "keyword"
