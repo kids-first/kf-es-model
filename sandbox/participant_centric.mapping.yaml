@@ -19,7 +19,7 @@ mappings:
             type: "date"
             format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
           diagnosis:
-            type: "text"
+            type: "keyword"
           diagnosis_category:
             type: "keyword"
           external_id:
@@ -184,7 +184,7 @@ mappings:
                     type: "date"
                     format: "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                   diagnosis:
-                    type: "text"
+                    type: "keyword"
                   diagnosis_category:
                     type: "keyword"
                   external_id:
