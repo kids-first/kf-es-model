@@ -233,7 +233,7 @@
                               "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                             },
                             "name": {
-                              "type": "text"
+                              "type": "keyword"
                             },
                             "version": {
                               "type": "keyword"
@@ -392,7 +392,7 @@
                   "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss"
                 },
                 "name": {
-                  "type": "text"
+                  "type": "keyword"
                 },
                 "version": {
                   "type": "keyword"
