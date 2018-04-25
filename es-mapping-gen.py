@@ -70,7 +70,6 @@ class SchemaGenerator(object):
             source_name = source['name']
 
             try:
-                1/0
                 json_str = requests.get(api_endpoint).text
                 kf_source = json.loads(json_str)
                 with open('cache/%s.json' % source_name, 'w') as f:
