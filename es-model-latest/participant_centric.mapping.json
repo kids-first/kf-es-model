@@ -187,9 +187,6 @@
                     "external_id": {
                       "type": "keyword"
                     }, 
-                    "family_id": {
-                      "type": "keyword"
-                    }, 
                     "gender": {
                       "type": "keyword"
                     }, 
@@ -202,6 +199,33 @@
                     "modified_at": {
                       "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
                       "type": "date"
+                    }, 
+                    "outcome": {
+                      "properties": {
+                        "age_at_event_days": {
+                          "type": "integer"
+                        }, 
+                        "created_at": {
+                          "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
+                          "type": "date"
+                        }, 
+                        "disease_related": {
+                          "type": "keyword"
+                        }, 
+                        "kf_id": {
+                          "type": "keyword"
+                        }, 
+                        "modified_at": {
+                          "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
+                          "type": "date"
+                        }, 
+                        "participant_id": {
+                          "type": "keyword"
+                        }, 
+                        "vital_status": {
+                          "type": "keyword"
+                        }
+                      }
                     }, 
                     "phenotype": {
                       "properties": {
@@ -290,9 +314,6 @@
                           "type": "keyword"
                         }
                       }
-                    }, 
-                    "study_id": {
-                      "type": "keyword"
                     }
                   }, 
                   "type": "nested"
@@ -415,6 +436,33 @@
         "modified_at": {
           "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
           "type": "date"
+        }, 
+        "outcome": {
+          "properties": {
+            "age_at_event_days": {
+              "type": "integer"
+            }, 
+            "created_at": {
+              "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
+              "type": "date"
+            }, 
+            "disease_related": {
+              "type": "keyword"
+            }, 
+            "kf_id": {
+              "type": "keyword"
+            }, 
+            "modified_at": {
+              "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
+              "type": "date"
+            }, 
+            "participant_id": {
+              "type": "keyword"
+            }, 
+            "vital_status": {
+              "type": "keyword"
+            }
+          }
         }, 
         "phenotype": {
           "properties": {

@@ -82,6 +82,8 @@ target-mappings:
                   source: Participant
                   exclude:
                   - _links
+                  - family_id
+                  - study_id
                   properties:
                     available_data_types:
                       type: keyword
@@ -91,6 +93,11 @@ target-mappings:
                       exclude:
                       - _links
                       - participant_id
+                      properties: {}
+                    outcome:
+                      source: Outcome
+                      exclude:
+                      - _links
                       properties: {}
                     phenotype:
                       properties:
@@ -118,6 +125,11 @@ target-mappings:
                       properties:
                         attribution:
                           type: text
+        outcome:
+          source: Outcome
+          exclude:
+          - _links
+          properties: {}
         phenotype:
           properties:
             hpo:
@@ -212,6 +224,11 @@ target-mappings:
                           - _links
                           - participant_id
                           properties: {}
+                        outcome:
+                          source: Outcome
+                          exclude:
+                          - _links
+                          properties: {}
                         phenotype:
                           properties:
                             hpo:
@@ -240,6 +257,11 @@ target-mappings:
                           properties:
                             attribution:
                               type: text
+            outcome:
+              source: Outcome
+              exclude:
+              - _links
+              properties: {}
             phenotype:
               properties:
                 hpo:
