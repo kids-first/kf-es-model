@@ -56,11 +56,17 @@ class SchemaGenerator(object):
     def source_models(self):
         return self._source_models
 
+    @property
+    def source_model_version(self):
+        return self._source_model_version
+
     def _read_mapper(self, mapper_file):
         with open(mapper_file, 'r') as m:
             self._mapper = yaml.load(m)
 
     def _get_sources(self):
+        # we only have one source now, the follow code needs update when new
+        # source schema is added (not sure will have or not)
         for source in self._mapper['sources']:
             if not source.get('api_endpoint'):
                 continue
@@ -79,6 +85,7 @@ class SchemaGenerator(object):
 
             if source_name == 'kf-api-dataservice':
                 self._source_models.update(kf_source.get('definitions'))
+                self._source_model_version = kf_source.get('info', {}).get('version')
 
     def generate_mappings(self):
         target_version = self.mapper.get('target-mappings').get('version')
@@ -89,6 +96,12 @@ class SchemaGenerator(object):
             mapping = mappings[mapping_name]
             expand_es_mapping(mapping, self.source_models, self.mapper)
 
+            # add meta in mapping
+            mapping.update({
+                "_meta": {
+                    "kf-dataservice-version": self.source_model_version
+                }
+            })
             export_dir = os.path.join('es-model-latest')
             if not os.path.exists(export_dir):
                 os.makedirs(export_dir)
@@ -99,7 +112,8 @@ class SchemaGenerator(object):
                         indent=2,
                         sort_keys=True))
 
-            archive_dir = os.path.join('es-model-archive', 'kf-es-model-v%s' % target_version)
+            archive_dir = os.path.join('es-model-archive',
+                'kf-es-model-v%s_%s' % (target_version, self.source_model_version))
             if not os.path.exists(archive_dir):
                 os.makedirs(archive_dir)
 

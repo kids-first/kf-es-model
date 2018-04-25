@@ -1,6 +1,9 @@
 {
   "mappings": {
     "participant_centric": {
+      "_meta": {
+        "kf-dataservice-version": "0.2.0"
+      }, 
       "properties": {
         "alias_group": {
           "type": "keyword"
