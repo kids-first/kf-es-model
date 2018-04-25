@@ -105,6 +105,7 @@ target-mappings:
                           source: Phenotype
                           exclude:
                           - _links
+                          - hpo_id
                           properties:
                             ancestral_hpo_ids:
                               type: keyword
@@ -136,6 +137,7 @@ target-mappings:
               source: Phenotype
               exclude:
               - _links
+              - hpo_id
               properties:
                 phenotype:
                   type: text
@@ -235,6 +237,7 @@ target-mappings:
                               source: Phenotype
                               exclude:
                               - _links
+                              - hpo_id
                               properties:
                                 phenotype:
                                   type: text
@@ -268,6 +271,7 @@ target-mappings:
                   source: Phenotype
                   exclude:
                   - _links
+                  - hpo_id
                   properties:
                     ancestral_hpo_ids:
                       type: keyword

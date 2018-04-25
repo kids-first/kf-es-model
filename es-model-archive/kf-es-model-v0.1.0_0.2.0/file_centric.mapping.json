@@ -275,9 +275,6 @@
                                   "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
                                   "type": "date"
                                 }, 
-                                "hpo_id": {
-                                  "type": "keyword"
-                                }, 
                                 "hpo_ids": {
                                   "type": "keyword"
                                 }, 
@@ -422,9 +419,6 @@
                     "created_at": {
                       "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
                       "type": "date"
-                    }, 
-                    "hpo_id": {
-                      "type": "keyword"
                     }, 
                     "hpo_ids": {
                       "type": "keyword"
