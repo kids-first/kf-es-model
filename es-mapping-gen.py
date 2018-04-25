@@ -33,7 +33,7 @@ def expand_es_mapping(mapping, source_models, mapper):
                 if source_property.get('format') else 'format:null'
 
             es_type = mapper.get('field_type_map').get(source_type, {}).get(source_format)
-            if es_type:
+            if es_type and p not in next_mappings:  # do NOT overwrite manually defined existing mapping type
                 next_mappings.update({p: es_type})
 
         mapping.pop('source', None)

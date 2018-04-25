@@ -268,7 +268,7 @@
                                   "type": "keyword"
                                 }, 
                                 "phenotype": {
-                                  "type": "keyword"
+                                  "type": "text"
                                 }, 
                                 "shared_hpo_ids": {
                                   "type": "keyword"
@@ -289,7 +289,7 @@
                         "study": {
                           "properties": {
                             "attribution": {
-                              "type": "keyword"
+                              "type": "text"
                             }, 
                             "created_at": {
                               "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
@@ -404,7 +404,7 @@
             "study": {
               "properties": {
                 "attribution": {
-                  "type": "keyword"
+                  "type": "text"
                 }, 
                 "created_at": {
                   "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 

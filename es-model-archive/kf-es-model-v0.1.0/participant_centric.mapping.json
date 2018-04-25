@@ -261,7 +261,7 @@
                     "study": {
                       "properties": {
                         "attribution": {
-                          "type": "keyword"
+                          "type": "text"
                         }, 
                         "created_at": {
                           "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
@@ -453,7 +453,7 @@
                   "type": "keyword"
                 }, 
                 "phenotype": {
-                  "type": "keyword"
+                  "type": "text"
                 }, 
                 "snomed_id": {
                   "type": "keyword"
@@ -468,7 +468,7 @@
         "study": {
           "properties": {
             "attribution": {
-              "type": "keyword"
+              "type": "text"
             }, 
             "created_at": {
               "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
