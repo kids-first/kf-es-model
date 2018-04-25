@@ -3,6 +3,9 @@ sources:
   api_endpoint: http://kf-api-dataservice-qa.kids-first.io/swagger
 
 field_type_map:
+  boolean:
+    format:null:
+      type: boolean
   string:
     format:null:
       type: keyword
