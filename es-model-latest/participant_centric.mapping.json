@@ -247,9 +247,6 @@
                             "hpo_ids": {
                               "type": "keyword"
                             }, 
-                            "kf_id": {
-                              "type": "keyword"
-                            }, 
                             "modified_at": {
                               "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
                               "type": "date"
@@ -260,16 +257,10 @@
                             "observed": {
                               "type": "keyword"
                             }, 
-                            "participant_id": {
-                              "type": "keyword"
-                            }, 
                             "phenotype": {
                               "type": "keyword"
                             }, 
                             "shared_hpo_ids": {
-                              "type": "keyword"
-                            }, 
-                            "snomed_id": {
                               "type": "keyword"
                             }
                           }
@@ -325,6 +316,12 @@
               "type": "nested"
             }, 
             "family_id": {
+              "type": "keyword"
+            }, 
+            "father_id": {
+              "type": "keyword"
+            }, 
+            "mother_id": {
               "type": "keyword"
             }
           }
@@ -481,9 +478,6 @@
                 "hpo_ids": {
                   "type": "keyword"
                 }, 
-                "kf_id": {
-                  "type": "keyword"
-                }, 
                 "modified_at": {
                   "format": "yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss", 
                   "type": "date"
@@ -494,14 +488,8 @@
                 "observed": {
                   "type": "keyword"
                 }, 
-                "participant_id": {
-                  "type": "keyword"
-                }, 
                 "phenotype": {
                   "type": "text"
-                }, 
-                "snomed_id": {
-                  "type": "keyword"
                 }
               }
             }

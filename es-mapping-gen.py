@@ -77,6 +77,8 @@ class SchemaGenerator(object):
             try:
                 json_str = requests.get(api_endpoint).text
                 kf_source = json.loads(json_str)
+                if not os.path.exists('cache'):
+                    os.makedirs('cache')
                 with open('cache/%s.json' % source_name, 'w') as f:
                     f.write(json.dumps(kf_source, indent=2))
             except:  # offline mode use cached dictionary
