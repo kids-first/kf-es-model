@@ -1,0 +1,325 @@
+sources:
+- name: kf-api-dataservice
+  api_endpoint: http://kf-api-dataservice-qa.kids-first.io/swagger
+
+field_type_map:
+  boolean:
+    format:null:
+      type: boolean
+  string:
+    format:null:
+      type: keyword
+    format:date-time:
+      type: date
+      format: yyyy-MM-dd HH:mm:ss.SSSSSS||yyyy-MM-dd HH:mm:ss
+  number:
+    format:null:
+      type: float
+    format:float:
+      type: float
+  integer:
+    format:null:
+      type: integer
+    format:int32:
+      type: integer
+    format:int64:
+      type: long
+
+target-mappings:
+  version: 0.1.0
+  mappings:
+    participant_centric:
+      source: Participant
+      exclude:
+      - _links
+      - biospecimens
+      - outcomes
+      - phenotypes
+      - family_id
+      - study_id
+      properties:
+        diagnoses:
+          type: nested
+          source: Diagnosis
+          exclude:
+          - _links
+          - participant_id
+          properties: {}
+        files:
+          type: nested
+          source: GenomicFile
+          exclude:
+          - _links
+          - biospecimen_id
+          - sequencing_experiment_id
+          properties:
+            sequencing_experiments:
+              type: nested
+              source: SequencingExperiment
+              exclude:
+              - _links
+              - genomic_files
+              properties: {}
+            #workflow:
+            #  source: Workflow
+            #  exclude:
+            #  - _links
+        family:
+          properties:
+            family_id:
+              type: keyword
+            family_compositions:
+              type: nested
+              properties:
+                composition:
+                  type: keyword
+                available_data_types:
+                  type: keyword
+                shared_hpo_ids:
+                  type: keyword
+                family_members:
+                  type: nested
+                  source: Participant
+                  exclude:
+                  - _links
+                  - family_id
+                  - study_id
+                  properties:
+                    available_data_types:
+                      type: keyword
+                    diagnoses:
+                      type: nested
+                      source: Diagnosis
+                      exclude:
+                      - _links
+                      - participant_id
+                      properties: {}
+                    outcome:
+                      source: Outcome
+                      exclude:
+                      - _links
+                      properties: {}
+                    phenotype:
+                      properties:
+                        hpo:
+                          source: Phenotype
+                          exclude:
+                          - _links
+                          - hpo_id
+                          properties:
+                            ancestral_hpo_ids:
+                              type: keyword
+                            negative_hpo_ids:
+                              type: keyword
+                            hpo_ids:
+                              type: keyword
+                            shared_hpo_ids:
+                              type: keyword
+                    relationship:
+                      type: keyword
+                    study:
+                      source: Study
+                      exclude:
+                      - _links
+                      - participants
+                      - study_files
+                      properties:
+                        attribution:
+                          type: text
+        outcome:
+          source: Outcome
+          exclude:
+          - _links
+          properties: {}
+        phenotype:
+          properties:
+            hpo:
+              source: Phenotype
+              exclude:
+              - _links
+              - hpo_id
+              properties:
+                phenotype:
+                  type: text
+                ancestral_hpo_ids:
+                  type: keyword
+                negative_hpo_ids:
+                  type: keyword
+                hpo_ids:
+                  type: keyword
+        biospecimens:
+          type: nested
+          source: Biospecimen
+          exclude:
+          - _links
+          - genomic_files
+          - participant_id
+          properties: {}
+        study:
+          source: Study
+          exclude:
+          - _links
+          - participants
+          - study_files
+          properties:
+            attribution:
+              type: text
+    file_centric:
+      source: GenomicFile
+      exclude:
+      - _links
+      - biospecimen_id
+      - sequencing_experiment_id
+      properties:
+        sequencing_experiments:
+          type: nested
+          source: SequencingExperiment
+          exclude:
+          - _links
+          - genomic_files
+          properties: {}
+        #workflow:
+        #  source: Workflow
+        #  exclude:
+        #  - _links
+        participants:
+          type: nested
+          source: Participant
+          exclude:
+          - _links
+          - biospecimens
+          - outcomes
+          - phenotypes
+          properties:
+            diagnoses:
+              type: nested
+              source: Diagnosis
+              exclude:
+              - _links
+              - participant_id
+              properties: {}
+            family:
+              properties:
+                family_id:
+                  type: keyword
+                family_compositions:
+                  type: nested
+                  properties:
+                    composition:
+                      type: keyword
+                    available_data_types:
+                      type: keyword
+                    shared_hpo_ids:
+                      type: keyword
+                    family_members:
+                      type: nested
+                      source: Participant
+                      exclude:
+                      - _links
+                      properties:
+                        available_data_types:
+                          type: keyword
+                        diagnoses:
+                          type: nested
+                          source: Diagnosis
+                          exclude:
+                          - _links
+                          - participant_id
+                          properties: {}
+                        outcome:
+                          source: Outcome
+                          exclude:
+                          - _links
+                          properties: {}
+                        phenotype:
+                          properties:
+                            hpo:
+                              source: Phenotype
+                              exclude:
+                              - _links
+                              - hpo_id
+                              properties:
+                                phenotype:
+                                  type: text
+                                ancestral_hpo_ids:
+                                  type: keyword
+                                negative_hpo_ids:
+                                  type: keyword
+                                hpo_ids:
+                                  type: keyword
+                                shared_hpo_ids:
+                                  type: keyword
+                        relationship:
+                          type: keyword
+                        study:
+                          source: Study
+                          exclude:
+                          - _links
+                          - participants
+                          - study_files
+                          properties:
+                            attribution:
+                              type: text
+            outcome:
+              source: Outcome
+              exclude:
+              - _links
+              properties: {}
+            phenotype:
+              properties:
+                hpo:
+                  source: Phenotype
+                  exclude:
+                  - _links
+                  - hpo_id
+                  properties:
+                    ancestral_hpo_ids:
+                      type: keyword
+                    negative_hpo_ids:
+                      type: keyword
+                    hpo_ids:
+                      type: keyword
+            biospecimens:
+              type: nested
+              source: Biospecimen
+              exclude:
+              - _links
+              - genomic_files
+              - participant_id
+              properties: {}
+            study:
+              source: Study
+              exclude:
+              - _links
+              - participants
+              - study_files
+              properties:
+                attribution:
+                  type: text
+
+
+  settings:
+    analysis:
+      analyzer:
+        autocomplete_analyzed:
+          filter:
+          - lowercase
+          - edge_ngram
+          tokenizer: standard
+        autocomplete_prefix:
+          filter:
+          - lowercase
+          - edge_ngram
+          tokenizer: keyword
+        lowercase_keyword:
+          filter:
+          - lowercase
+          tokenizer: keyword
+      filter:
+        edge_ngram:
+          max_gram: '20'
+          min_gram: '1'
+          side: front
+          type: edge_ngram
+    index.mapping.nested_fields.limit: 100
+    index.max_result_window: 100000000
