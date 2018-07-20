@@ -29,7 +29,7 @@ field_type_map:
       type: long
 
 target-mappings:
-  version: 0.2.0
+  version: 0.3.0
   mappings:
     participant_centric:
       source: Participant
@@ -40,6 +40,8 @@ target-mappings:
       - phenotypes
       - family_id
       - study_id
+      - created_at
+      - modified_at
       properties:
         available_data_types:
           type: keyword
@@ -49,6 +51,8 @@ target-mappings:
           exclude:
           - _links
           - participant_id
+          - created_at
+          - modified_at
           properties: {}
         files:
           type: nested
@@ -66,6 +70,8 @@ target-mappings:
               exclude:
               - _links
               - genomic_files
+              - created_at
+              - modified_at
               properties: {}
             #workflow:
             #  source: Workflow
@@ -95,6 +101,8 @@ target-mappings:
                   - _links
                   - family_id
                   - study_id
+                  - created_at
+                  - modified_at
                   properties:
                     available_data_types:
                       type: keyword
@@ -104,11 +112,15 @@ target-mappings:
                       exclude:
                       - _links
                       - participant_id
+                      - created_at
+                      - modified_at
                       properties: {}
                     outcome:
                       source: Outcome
                       exclude:
                       - _links
+                      - created_at
+                      - modified_at
                       properties: {}
                     phenotype:
                       properties:
@@ -116,34 +128,34 @@ target-mappings:
                           source: Phenotype
                           exclude:
                           - _links
-                          - hpo_id
+                          - created_at
+                          - modified_at
+                          - hpo_id_phenotype
+                          - snomed_id_phenotype
                           - participant_id
-                          - snomed_id
+                          - observed
                           - kf_id
                           properties:
                             ancestral_hpo_ids:
                               type: keyword
-                            negative_hpo_ids:
+                            hpo_phenotype_not_observed:
                               type: keyword
-                            hpo_ids:
+                            hpo_phenotype_observed:
+                              type: keyword
+                            snomed_phenotype_not_observed:
+                              type: keyword
+                            snomed_phenotype_observed:
                               type: keyword
                             shared_hpo_ids:
                               type: keyword
                     relationship:
                       type: keyword
-                    study:
-                      source: Study
-                      exclude:
-                      - _links
-                      - participants
-                      - study_files
-                      properties:
-                        attribution:
-                          type: text
         outcome:
           source: Outcome
           exclude:
           - _links
+          - created_at
+          - modified_at
           properties: {}
         phenotype:
           properties:
@@ -151,19 +163,24 @@ target-mappings:
               source: Phenotype
               exclude:
               - _links
-              - hpo_id
+              - created_at
+              - modified_at
+              - hpo_id_phenotype
+              - snomed_id_phenotype
               - participant_id
-              - snomed_id
+              - observed
               - kf_id
               properties:
-                phenotype:
-                  type: text
                 ancestral_hpo_ids:
                   type: keyword
-                negative_hpo_ids:
+                hpo_phenotype_not_observed:
                   type: keyword
-                hpo_ids:
+                hpo_phenotype_observed:
                   type: keyword
+                snomed_phenotype_not_observed:
+                  type: keyword 
+                snomed_phenotype_observed:
+                  type: keyword 
         biospecimens:
           type: nested
           source: Biospecimen
@@ -171,13 +188,15 @@ target-mappings:
           - _links
           - genomic_files
           - participant_id
+          - created_at
+          - modified_at
           properties: {}
         study:
           source: Study
           exclude:
           - _links
-          - participants
-          - study_files
+          - created_at
+          - modified_at
           properties:
             attribution:
               type: text
@@ -196,6 +215,8 @@ target-mappings:
           exclude:
           - _links
           - genomic_files
+          - created_at
+          - modified_at
           properties: {}
         #workflow:
         #  source: Workflow
@@ -209,6 +230,10 @@ target-mappings:
           - biospecimens
           - outcomes
           - phenotypes
+          - created_at
+          - modified_at
+          - family_id
+          - study_id
           properties:
             available_data_types:
               type: keyword
@@ -218,6 +243,8 @@ target-mappings:
               exclude:
               - _links
               - participant_id
+              - created_at
+              - modified_at
               properties: {}
             family:
               properties:
@@ -241,6 +268,10 @@ target-mappings:
                       source: Participant
                       exclude:
                       - _links
+                      - created_at
+                      - modified_at
+                      - family_id
+                      - study_id
                       properties:
                         available_data_types:
                           type: keyword
@@ -250,11 +281,15 @@ target-mappings:
                           exclude:
                           - _links
                           - participant_id
+                          - created_at
+                          - modified_at
                           properties: {}
                         outcome:
                           source: Outcome
                           exclude:
                           - _links
+                          - created_at
+                          - modified_at
                           properties: {}
                         phenotype:
                           properties:
@@ -262,36 +297,35 @@ target-mappings:
                               source: Phenotype
                               exclude:
                               - _links
-                              - hpo_id
+                              - created_at
+                              - modified_at
+                              - hpo_id_phenotype
+                              - snomed_id_phenotype
                               - participant_id
-                              - snomed_id
+                              - observed
                               - kf_id
                               properties:
-                                phenotype:
-                                  type: text
                                 ancestral_hpo_ids:
                                   type: keyword
-                                negative_hpo_ids:
+                                hpo_phenotype_not_observed:
                                   type: keyword
-                                hpo_ids:
+                                hpo_phenotype_observed:
                                   type: keyword
+                                snomed_phenotype_not_observed:
+                                  type: keyword 
+                                snomed_phenotype_observed:
+                                  type: keyword 
                                 shared_hpo_ids:
                                   type: keyword
                         relationship:
                           type: keyword
-                        study:
-                          source: Study
-                          exclude:
-                          - _links
-                          - participants
-                          - study_files
-                          properties:
-                            attribution:
-                              type: text
             outcome:
               source: Outcome
               exclude:
               - _links
+              - created_at
+              - modified_at
+              - participant_id
               properties: {}
             phenotype:
               properties:
@@ -299,17 +333,24 @@ target-mappings:
                   source: Phenotype
                   exclude:
                   - _links
-                  - hpo_id
+                  - created_at
+                  - modified_at
+                  - hpo_id_phenotype
+                  - snomed_id_phenotype
                   - participant_id
-                  - snomed_id
+                  - observed
                   - kf_id
                   properties:
                     ancestral_hpo_ids:
                       type: keyword
-                    negative_hpo_ids:
+                    hpo_phenotype_not_observed:
                       type: keyword
-                    hpo_ids:
+                    hpo_phenotype_observed:
                       type: keyword
+                    snomed_phenotype_not_observed:
+                      type: keyword 
+                    snomed_phenotype_observed:
+                      type: keyword 
             biospecimens:
               type: nested
               source: Biospecimen
@@ -317,18 +358,18 @@ target-mappings:
               - _links
               - genomic_files
               - participant_id
+              - created_at
+              - modified_at
               properties: {}
             study:
               source: Study
               exclude:
               - _links
-              - participants
-              - study_files
+              - created_at
+              - modified_at
               properties:
                 attribution:
                   type: text
-
-
   settings:
     analysis:
       analyzer:
