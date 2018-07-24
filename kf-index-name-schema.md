@@ -14,12 +14,12 @@ indices.
 [motivation]: #motivation
 
 As the Kids First Data Resource Portal (DRP) grows in terms of the data size
-searchable through it, there will be an ever increasing number of elasticsaerch
+searchable through it, there will be an ever increasing number of elasticsearch
 indices that are in use at any given time.
 
 It had been established, given the need for many studies to have their data
 indexed, supporting updated of only a few studies of a time, we had decided to
-shard the domain by creating an index per study per entity type. 
+shard the domain by creating an index per study per entity type.
 
 As the number of studies and entities being tracked by the portal grows the
 number of indices being used will grow in terms of `#studies * #entities` and
@@ -29,8 +29,6 @@ potential growth of `#studies * #entities * #types`. The management of the
 publishing of different indices through the maniuplation of aliases will become
 a large and important task that will be greately aided through the establishment
 of a schema for the naming of an elasticsearch index.
-
-The primary benefit of establishing a naming schema is that 
 
 - [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 
@@ -62,11 +60,10 @@ will be unable to describe these indicies.
 
 The use of a schema is simply an aid and to help maintain the source of truth
 on what an index describes with the data itself. An alternative will be to build
-a service that tracks the metadata about releases and studies to act as a source of truth for which index pertains to a particular dataset or usecase. 
+a service that tracks the metadata about releases and studies to act as a source of truth for which index pertains to a particular dataset or usecase.
 
 
 ## Unresolved questions
 [unresolved]: #unresolved-questions
 
 TODO
-
