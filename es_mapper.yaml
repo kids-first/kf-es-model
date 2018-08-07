@@ -27,6 +27,9 @@ field_type_map:
       type: integer
     format:int64:
       type: long
+  array:
+    format:null:
+      type: keyword
 
 target-mappings:
   version: 0.3.0
@@ -63,6 +66,7 @@ target-mappings:
           - _links
           - biospecimen_id
           - sequencing_experiment_id
+          - urls
           properties:
             size:
               type: long
@@ -192,6 +196,7 @@ target-mappings:
           - _links
           - genomic_files
           - participant_id
+          - diagnoses
           - created_at
           - modified_at
           properties: {}
@@ -210,6 +215,7 @@ target-mappings:
       - _links
       - biospecimen_id
       - sequencing_experiment_id
+      - urls
       properties:
         size:
           type: long
@@ -368,6 +374,7 @@ target-mappings:
               - participant_id
               - created_at
               - modified_at
+              - diagnoses
               properties: {}
             study:
               source: Study

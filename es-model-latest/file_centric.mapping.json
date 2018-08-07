@@ -5,6 +5,9 @@
         "kf-dataservice-version": "1.2.0"
       }, 
       "properties": {
+        "acl": {
+          "type": "keyword"
+        }, 
         "availability": {
           "type": "keyword"
         }, 

@@ -291,6 +291,9 @@
         }, 
         "files": {
           "properties": {
+            "acl": {
+              "type": "keyword"
+            }, 
             "availability": {
               "type": "keyword"
             }, 
