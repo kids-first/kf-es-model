@@ -84,6 +84,9 @@
             "biospecimen_id": {
               "type": "keyword"
             }, 
+            "diagnosis": {
+              "type": "keyword"
+            }, 
             "diagnosis_category": {
               "type": "keyword"
             }, 
@@ -150,6 +153,9 @@
                           "type": "integer"
                         }, 
                         "biospecimen_id": {
+                          "type": "keyword"
+                        }, 
+                        "diagnosis": {
                           "type": "keyword"
                         }, 
                         "diagnosis_category": {

@@ -53,7 +53,9 @@ target-mappings:
           - participant_id
           - created_at
           - modified_at
-          properties: {}
+          properties: 
+            diagnosis:
+              type: keyword
         files:
           type: nested
           source: GenomicFile
@@ -114,7 +116,9 @@ target-mappings:
                       - participant_id
                       - created_at
                       - modified_at
-                      properties: {}
+                      properties: 
+                        diagnosis:
+                          type: keyword
                     outcome:
                       source: Outcome
                       exclude:
@@ -245,7 +249,9 @@ target-mappings:
               - participant_id
               - created_at
               - modified_at
-              properties: {}
+              properties: 
+                diagnosis:
+                  type: keyword
             family:
               properties:
                 family_id:
@@ -283,7 +289,9 @@ target-mappings:
                           - participant_id
                           - created_at
                           - modified_at
-                          properties: {}
+                          properties: 
+                            diagnosis:
+                              type: keyword
                         outcome:
                           source: Outcome
                           exclude:
