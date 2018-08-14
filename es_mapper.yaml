@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.3.0
+  version: 0.4.1
   mappings:
     participant_centric:
       source: Participant
@@ -41,10 +41,10 @@ target-mappings:
       - biospecimens
       - outcomes
       - phenotypes
-      - family_id
       - study_id
       - created_at
       - modified_at
+      - visible
       properties:
         available_data_types:
           type: keyword
@@ -56,6 +56,7 @@ target-mappings:
           - participant_id
           - created_at
           - modified_at
+          - visible
           properties: 
             diagnosis:
               type: keyword
@@ -67,6 +68,7 @@ target-mappings:
           - biospecimen_id
           - sequencing_experiment_id
           - urls
+          - visible
           properties:
             size:
               type: long
@@ -78,6 +80,7 @@ target-mappings:
               - genomic_files
               - created_at
               - modified_at
+              - visible
               properties: {}
             #workflow:
             #  source: Workflow
@@ -85,8 +88,6 @@ target-mappings:
             #  - _links
         family:
           properties:
-            family_id:
-              type: keyword
             father_id:
               type: keyword
             mother_id:
@@ -105,10 +106,10 @@ target-mappings:
                   source: Participant
                   exclude:
                   - _links
-                  - family_id
                   - study_id
                   - created_at
                   - modified_at
+                  - visible
                   properties:
                     available_data_types:
                       type: keyword
@@ -120,6 +121,7 @@ target-mappings:
                       - participant_id
                       - created_at
                       - modified_at
+                      - visible
                       properties: 
                         diagnosis:
                           type: keyword
@@ -129,6 +131,7 @@ target-mappings:
                       - _links
                       - created_at
                       - modified_at
+                      - visible
                       properties: {}
                     phenotype:
                       properties:
@@ -143,6 +146,7 @@ target-mappings:
                           - participant_id
                           - observed
                           - kf_id
+                          - visible
                           properties:
                             ancestral_hpo_ids:
                               type: keyword
@@ -164,6 +168,7 @@ target-mappings:
           - _links
           - created_at
           - modified_at
+          - visible
           properties: {}
         phenotype:
           properties:
@@ -178,6 +183,7 @@ target-mappings:
               - participant_id
               - observed
               - kf_id
+              - visible
               properties:
                 ancestral_hpo_ids:
                   type: keyword
@@ -199,6 +205,7 @@ target-mappings:
           - diagnoses
           - created_at
           - modified_at
+          - visible
           properties: {}
         study:
           source: Study
@@ -206,6 +213,7 @@ target-mappings:
           - _links
           - created_at
           - modified_at
+          - visible
           properties:
             attribution:
               type: text
@@ -216,6 +224,7 @@ target-mappings:
       - biospecimen_id
       - sequencing_experiment_id
       - urls
+      - visible
       properties:
         size:
           type: long
@@ -227,6 +236,7 @@ target-mappings:
           - genomic_files
           - created_at
           - modified_at
+          - visible
           properties: {}
         #workflow:
         #  source: Workflow
@@ -242,8 +252,8 @@ target-mappings:
           - phenotypes
           - created_at
           - modified_at
-          - family_id
           - study_id
+          - visible
           properties:
             available_data_types:
               type: keyword
@@ -255,13 +265,12 @@ target-mappings:
               - participant_id
               - created_at
               - modified_at
+              - visible
               properties: 
                 diagnosis:
                   type: keyword
             family:
               properties:
-                family_id:
-                  type: keyword
                 father_id:
                   type: keyword
                 mother_id:
@@ -282,8 +291,8 @@ target-mappings:
                       - _links
                       - created_at
                       - modified_at
-                      - family_id
                       - study_id
+                      - visible
                       properties:
                         available_data_types:
                           type: keyword
@@ -295,6 +304,7 @@ target-mappings:
                           - participant_id
                           - created_at
                           - modified_at
+                          - visible
                           properties: 
                             diagnosis:
                               type: keyword
@@ -304,6 +314,7 @@ target-mappings:
                           - _links
                           - created_at
                           - modified_at
+                          - visible
                           properties: {}
                         phenotype:
                           properties:
@@ -318,6 +329,7 @@ target-mappings:
                               - participant_id
                               - observed
                               - kf_id
+                              - visible
                               properties:
                                 ancestral_hpo_ids:
                                   type: keyword
@@ -340,6 +352,7 @@ target-mappings:
               - created_at
               - modified_at
               - participant_id
+              - visible
               properties: {}
             phenotype:
               properties:
@@ -354,6 +367,7 @@ target-mappings:
                   - participant_id
                   - observed
                   - kf_id
+                  - visible
                   properties:
                     ancestral_hpo_ids:
                       type: keyword
@@ -375,6 +389,7 @@ target-mappings:
               - created_at
               - modified_at
               - diagnoses
+              - visible
               properties: {}
             study:
               source: Study
@@ -382,6 +397,7 @@ target-mappings:
               - _links
               - created_at
               - modified_at
+              - visible
               properties:
                 attribution:
                   type: text
