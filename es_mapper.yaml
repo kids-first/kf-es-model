@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.4.1
+  version: 0.5.0
   mappings:
     participant_centric:
       source: Participant
@@ -57,6 +57,7 @@ target-mappings:
           - created_at
           - modified_at
           - visible
+          - biospecimen_id
           properties: 
             diagnosis:
               type: keyword
@@ -92,76 +93,77 @@ target-mappings:
               type: keyword
             mother_id:
               type: keyword
-            family_compositions:
+            external_id:
+              type: keyword
+            family_type:
+              type: keyword
+            available_data_types:
+              type: keyword
+            shared_hpo_ids:
+              type: keyword
+            family_members:
               type: nested
+              source: Participant
+              exclude:
+              - _links
+              - study_id
+              - created_at
+              - modified_at
+              - visible
+              - family_id
               properties:
-                composition:
-                  type: keyword
                 available_data_types:
                   type: keyword
-                shared_hpo_ids:
-                  type: keyword
-                family_members:
+                diagnoses:
                   type: nested
-                  source: Participant
+                  source: Diagnosis
                   exclude:
                   - _links
-                  - study_id
+                  - participant_id
                   - created_at
                   - modified_at
                   - visible
+                  - biospecimen_id
+                  properties: 
+                    diagnosis:
+                      type: keyword
+                outcome:
+                  source: Outcome
+                  exclude:
+                  - _links
+                  - created_at
+                  - modified_at
+                  - visible
+                  properties: {}
+                phenotype:
                   properties:
-                    available_data_types:
-                      type: keyword
-                    diagnoses:
-                      type: nested
-                      source: Diagnosis
+                    hpo:
+                      source: Phenotype
                       exclude:
                       - _links
+                      - created_at
+                      - modified_at
+                      - hpo_id_phenotype
+                      - snomed_id_phenotype
                       - participant_id
-                      - created_at
-                      - modified_at
+                      - observed
+                      - kf_id
                       - visible
-                      properties: 
-                        diagnosis:
-                          type: keyword
-                    outcome:
-                      source: Outcome
-                      exclude:
-                      - _links
-                      - created_at
-                      - modified_at
-                      - visible
-                      properties: {}
-                    phenotype:
                       properties:
-                        hpo:
-                          source: Phenotype
-                          exclude:
-                          - _links
-                          - created_at
-                          - modified_at
-                          - hpo_id_phenotype
-                          - snomed_id_phenotype
-                          - participant_id
-                          - observed
-                          - kf_id
-                          - visible
-                          properties:
-                            ancestral_hpo_ids:
-                              type: keyword
-                            hpo_phenotype_not_observed:
-                              type: keyword
-                            hpo_phenotype_observed:
-                              type: keyword
-                            snomed_phenotype_not_observed:
-                              type: keyword
-                            snomed_phenotype_observed:
-                              type: keyword
-                            shared_hpo_ids:
-                              type: keyword
-                    relationship:
-                      type: keyword
+                        ancestral_hpo_ids:
+                          type: keyword
+                        hpo_phenotype_not_observed:
+                          type: keyword
+                        hpo_phenotype_observed:
+                          type: keyword
+                        snomed_phenotype_not_observed:
+                          type: keyword
+                        snomed_phenotype_observed:
+                          type: keyword
+                        shared_hpo_ids:
+                          type: keyword
+                relationship:
+                  type: keyword
         outcome:
           source: Outcome
           exclude:
@@ -266,6 +268,7 @@ target-mappings:
               - created_at
               - modified_at
               - visible
+              - biospecimen_id
               properties: 
                 diagnosis:
                   type: keyword
@@ -275,76 +278,77 @@ target-mappings:
                   type: keyword
                 mother_id:
                   type: keyword
-                family_compositions:
+                external_id:
+                  type: keyword
+                family_type:
+                  type: keyword
+                available_data_types:
+                  type: keyword
+                shared_hpo_ids:
+                  type: keyword
+                family_members:
                   type: nested
+                  source: Participant
+                  exclude:
+                  - _links
+                  - study_id
+                  - created_at
+                  - modified_at
+                  - visible
+                  - family_id
                   properties:
-                    composition:
-                      type: keyword
                     available_data_types:
                       type: keyword
-                    shared_hpo_ids:
-                      type: keyword
-                    family_members:
+                    diagnoses:
                       type: nested
-                      source: Participant
+                      source: Diagnosis
+                      exclude:
+                      - _links
+                      - participant_id
+                      - created_at
+                      - modified_at
+                      - visible
+                      - biospecimen_id
+                      properties: 
+                        diagnosis:
+                          type: keyword
+                    outcome:
+                      source: Outcome
                       exclude:
                       - _links
                       - created_at
                       - modified_at
-                      - study_id
                       - visible
+                      properties: {}
+                    phenotype:
                       properties:
-                        available_data_types:
-                          type: keyword
-                        diagnoses:
-                          type: nested
-                          source: Diagnosis
+                        hpo:
+                          source: Phenotype
                           exclude:
                           - _links
+                          - created_at
+                          - modified_at
+                          - hpo_id_phenotype
+                          - snomed_id_phenotype
                           - participant_id
-                          - created_at
-                          - modified_at
+                          - observed
+                          - kf_id
                           - visible
-                          properties: 
-                            diagnosis:
-                              type: keyword
-                        outcome:
-                          source: Outcome
-                          exclude:
-                          - _links
-                          - created_at
-                          - modified_at
-                          - visible
-                          properties: {}
-                        phenotype:
                           properties:
-                            hpo:
-                              source: Phenotype
-                              exclude:
-                              - _links
-                              - created_at
-                              - modified_at
-                              - hpo_id_phenotype
-                              - snomed_id_phenotype
-                              - participant_id
-                              - observed
-                              - kf_id
-                              - visible
-                              properties:
-                                ancestral_hpo_ids:
-                                  type: keyword
-                                hpo_phenotype_not_observed:
-                                  type: keyword
-                                hpo_phenotype_observed:
-                                  type: keyword
-                                snomed_phenotype_not_observed:
-                                  type: keyword 
-                                snomed_phenotype_observed:
-                                  type: keyword 
-                                shared_hpo_ids:
-                                  type: keyword
-                        relationship:
-                          type: keyword
+                            ancestral_hpo_ids:
+                              type: keyword
+                            hpo_phenotype_not_observed:
+                              type: keyword
+                            hpo_phenotype_observed:
+                              type: keyword
+                            snomed_phenotype_not_observed:
+                              type: keyword
+                            snomed_phenotype_observed:
+                              type: keyword
+                            shared_hpo_ids:
+                              type: keyword
+                    relationship:
+                      type: keyword
             outcome:
               source: Outcome
               exclude:
