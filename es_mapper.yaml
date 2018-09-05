@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.5.0
+  version: 0.5.1
   mappings:
     participant_centric:
       source: Participant
@@ -57,7 +57,7 @@ target-mappings:
           - created_at
           - modified_at
           - visible
-          - biospecimen_id
+          - biospecimens
           properties: 
             diagnosis:
               type: keyword
@@ -70,6 +70,8 @@ target-mappings:
           - sequencing_experiment_id
           - urls
           - visible
+          - read_groups
+          - paired_end
           properties:
             size:
               type: long
@@ -123,7 +125,7 @@ target-mappings:
                   - created_at
                   - modified_at
                   - visible
-                  - biospecimen_id
+                  - biospecimens
                   properties: 
                     diagnosis:
                       type: keyword
@@ -227,6 +229,8 @@ target-mappings:
       - sequencing_experiment_id
       - urls
       - visible
+      - read_groups
+      - paired_end
       properties:
         size:
           type: long
@@ -268,7 +272,7 @@ target-mappings:
               - created_at
               - modified_at
               - visible
-              - biospecimen_id
+              - biospecimens
               properties: 
                 diagnosis:
                   type: keyword
@@ -308,7 +312,7 @@ target-mappings:
                       - created_at
                       - modified_at
                       - visible
-                      - biospecimen_id
+                      - biospecimens
                       properties: 
                         diagnosis:
                           type: keyword
