@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.5.2
+  version: 0.6.0
   mappings:
     participant_centric:
       source: Participant
@@ -140,32 +140,32 @@ target-mappings:
                       - participant_id
                       properties: {}
                     phenotype:
+                      source: Phenotype
+                      exclude:
+                      - _links
+                      - created_at
+                      - modified_at
+                      - hpo_id_phenotype
+                      - snomed_id_phenotype
+                      - participant_id
+                      - observed
+                      - kf_id
+                      - visible
                       properties:
-                        hpo:
-                          source: Phenotype
-                          exclude:
-                          - _links
-                          - created_at
-                          - modified_at
-                          - hpo_id_phenotype
-                          - snomed_id_phenotype
-                          - participant_id
-                          - observed
-                          - kf_id
-                          - visible
-                          properties:
-                            ancestral_hpo_ids:
-                              type: keyword
-                            hpo_phenotype_not_observed:
-                              type: keyword
-                            hpo_phenotype_observed:
-                              type: keyword
-                            snomed_phenotype_not_observed:
-                              type: keyword
-                            snomed_phenotype_observed:
-                              type: keyword
-                            shared_hpo_ids:
-                              type: keyword
+                        ancestral_hpo_ids:
+                          type: keyword
+                        hpo_phenotype_not_observed:
+                          type: keyword
+                        hpo_phenotype_observed:
+                          type: keyword
+                        hpo_phenotype_observed_text:
+                          type: keyword
+                        snomed_phenotype_not_observed:
+                          type: keyword
+                        snomed_phenotype_observed:
+                          type: keyword
+                        shared_hpo_ids:
+                          type: keyword
                     relationship:
                       type: keyword
         outcome:
@@ -177,30 +177,30 @@ target-mappings:
           - visible
           properties: {}
         phenotype:
+          source: Phenotype
+          exclude:
+          - _links
+          - created_at
+          - modified_at
+          - hpo_id_phenotype
+          - snomed_id_phenotype
+          - participant_id
+          - observed
+          - kf_id
+          - visible
           properties:
-            hpo:
-              source: Phenotype
-              exclude:
-              - _links
-              - created_at
-              - modified_at
-              - hpo_id_phenotype
-              - snomed_id_phenotype
-              - participant_id
-              - observed
-              - kf_id
-              - visible
-              properties:
-                ancestral_hpo_ids:
-                  type: keyword
-                hpo_phenotype_not_observed:
-                  type: keyword
-                hpo_phenotype_observed:
-                  type: keyword
-                snomed_phenotype_not_observed:
-                  type: keyword 
-                snomed_phenotype_observed:
-                  type: keyword 
+            ancestral_hpo_ids:
+              type: keyword
+            hpo_phenotype_not_observed:
+              type: keyword
+            hpo_phenotype_observed:
+              type: keyword
+            hpo_phenotype_observed_text:
+              type: keyword
+            snomed_phenotype_not_observed:
+              type: keyword 
+            snomed_phenotype_observed:
+              type: keyword 
         biospecimens:
           type: nested
           source: Biospecimen
@@ -329,32 +329,32 @@ target-mappings:
                           - participant_id
                           properties: {}
                         phenotype:
+                          source: Phenotype
+                          exclude:
+                          - _links
+                          - created_at
+                          - modified_at
+                          - hpo_id_phenotype
+                          - snomed_id_phenotype
+                          - participant_id
+                          - observed
+                          - kf_id
+                          - visible
                           properties:
-                            hpo:
-                              source: Phenotype
-                              exclude:
-                              - _links
-                              - created_at
-                              - modified_at
-                              - hpo_id_phenotype
-                              - snomed_id_phenotype
-                              - participant_id
-                              - observed
-                              - kf_id
-                              - visible
-                              properties:
-                                ancestral_hpo_ids:
-                                  type: keyword
-                                hpo_phenotype_not_observed:
-                                  type: keyword
-                                hpo_phenotype_observed:
-                                  type: keyword
-                                snomed_phenotype_not_observed:
-                                  type: keyword
-                                snomed_phenotype_observed:
-                                  type: keyword
-                                shared_hpo_ids:
-                                  type: keyword
+                            ancestral_hpo_ids:
+                              type: keyword
+                            hpo_phenotype_not_observed:
+                              type: keyword
+                            hpo_phenotype_observed:
+                              type: keyword
+                            hpo_phenotype_observed_text:
+                              type: keyword
+                            snomed_phenotype_not_observed:
+                              type: keyword
+                            snomed_phenotype_observed:
+                              type: keyword
+                            shared_hpo_ids:
+                              type: keyword
                         relationship:
                           type: keyword
             outcome:
@@ -367,30 +367,30 @@ target-mappings:
               - visible
               properties: {}
             phenotype:
+              source: Phenotype
+              exclude:
+              - _links
+              - created_at
+              - modified_at
+              - hpo_id_phenotype
+              - snomed_id_phenotype
+              - participant_id
+              - observed
+              - kf_id
+              - visible
               properties:
-                hpo:
-                  source: Phenotype
-                  exclude:
-                  - _links
-                  - created_at
-                  - modified_at
-                  - hpo_id_phenotype
-                  - snomed_id_phenotype
-                  - participant_id
-                  - observed
-                  - kf_id
-                  - visible
-                  properties:
-                    ancestral_hpo_ids:
-                      type: keyword
-                    hpo_phenotype_not_observed:
-                      type: keyword
-                    hpo_phenotype_observed:
-                      type: keyword
-                    snomed_phenotype_not_observed:
-                      type: keyword 
-                    snomed_phenotype_observed:
-                      type: keyword 
+                ancestral_hpo_ids:
+                  type: keyword
+                hpo_phenotype_not_observed:
+                  type: keyword
+                hpo_phenotype_observed:
+                  type: keyword
+                hpo_phenotype_observed_text:
+                  type: keyword
+                snomed_phenotype_not_observed:
+                  type: keyword 
+                snomed_phenotype_observed:
+                  type: keyword 
             biospecimens:
               type: nested
               source: Biospecimen
