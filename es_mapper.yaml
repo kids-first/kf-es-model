@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.6.1
+  version: 0.7.0
   mappings:
     participant_centric:
       source: Participant
