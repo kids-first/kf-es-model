@@ -100,6 +100,7 @@ class SchemaGenerator(object):
 
             # add meta in mapping
             mapping.update({
+                "dynamic": False,
                 "_meta": {
                     "kf-dataservice-version": self.source_model_version
                 }
