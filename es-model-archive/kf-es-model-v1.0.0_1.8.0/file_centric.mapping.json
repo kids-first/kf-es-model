@@ -2,7 +2,7 @@
   "mappings": {
     "file_centric": {
       "_meta": {
-        "kf-dataservice-version": "1.9.0"
+        "kf-dataservice-version": "1.8.0"
       }, 
       "properties": {
         "access_urls": {
@@ -433,7 +433,7 @@
         "reference_genome": {
           "type": "keyword"
         }, 
-        "repository": {
+        "sequencing_experiment_genomic_files": {
           "type": "keyword"
         }, 
         "sequencing_experiments": {
@@ -478,6 +478,9 @@
               "type": "keyword"
             }, 
             "sequencing_center_id": {
+              "type": "keyword"
+            }, 
+            "sequencing_experiment_genomic_files": {
               "type": "keyword"
             }, 
             "total_reads": {
