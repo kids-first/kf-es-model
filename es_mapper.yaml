@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.7.0
+  version: 0.8.0
   mappings:
     participant_centric:
       source: Participant
@@ -58,7 +58,7 @@ target-mappings:
           - modified_at
           - visible
           - biospecimens
-          properties: 
+          properties:
             diagnosis:
               type: keyword
         files:
@@ -72,7 +72,10 @@ target-mappings:
           - visible
           - paired_end
           - read_group_genomic_files
+          - sequencing_experiment_genomic_files
           properties:
+            repository:
+              type: keyword
             size:
               type: long
             sequencing_experiments:
@@ -84,6 +87,7 @@ target-mappings:
               - created_at
               - modified_at
               - visible
+              - sequencing_experiment_genomic_files
               properties: {}
             #workflow:
             #  source: Workflow
@@ -127,7 +131,7 @@ target-mappings:
                       - modified_at
                       - visible
                       - biospecimens
-                      properties: 
+                      properties:
                         diagnosis:
                           type: keyword
                     outcome:
@@ -198,9 +202,9 @@ target-mappings:
             hpo_phenotype_observed_text:
               type: keyword
             snomed_phenotype_not_observed:
-              type: keyword 
+              type: keyword
             snomed_phenotype_observed:
-              type: keyword 
+              type: keyword
         biospecimens:
           type: nested
           source: Biospecimen
@@ -234,7 +238,10 @@ target-mappings:
       - visible
       - paired_end
       - read_group_genomic_files
+      - sequencing_experiment_genomic_files
       properties:
+        repository:
+          type: keyword
         size:
           type: long
         sequencing_experiments:
@@ -246,6 +253,7 @@ target-mappings:
           - created_at
           - modified_at
           - visible
+          - sequencing_experiment_genomic_files
           properties: {}
         #workflow:
         #  source: Workflow
@@ -276,7 +284,7 @@ target-mappings:
               - modified_at
               - visible
               - biospecimens
-              properties: 
+              properties:
                 diagnosis:
                   type: keyword
             family:
@@ -317,7 +325,7 @@ target-mappings:
                           - modified_at
                           - visible
                           - biospecimens
-                          properties: 
+                          properties:
                             diagnosis:
                               type: keyword
                         outcome:
@@ -389,9 +397,9 @@ target-mappings:
                 hpo_phenotype_observed_text:
                   type: keyword
                 snomed_phenotype_not_observed:
-                  type: keyword 
+                  type: keyword
                 snomed_phenotype_observed:
-                  type: keyword 
+                  type: keyword
             biospecimens:
               type: nested
               source: Biospecimen
