@@ -10,7 +10,7 @@ from shutil import copyfile
 def expand_es_mapping(mapping, source_models, mapper):
     next_mappings = {}
     config = {}
-    for k, v in mapping.iteritems():
+    for k, v in mapping.items():
         if k == 'properties':
             next_mappings = v
         else:
