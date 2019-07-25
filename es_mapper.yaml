@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.9.0
+  version: 0.9.1
   mappings:
     participant_centric:
       source: Participant
@@ -144,7 +144,6 @@ target-mappings:
                       - participant_id
                       properties: {}
                     phenotype:
-                      type: nested
                       source: Phenotype
                       exclude:
                       - _links
@@ -182,7 +181,6 @@ target-mappings:
           - visible
           properties: {}
         phenotype:
-          type: nested
           source: Phenotype
           exclude:
           - _links
@@ -340,7 +338,6 @@ target-mappings:
                           - participant_id
                           properties: {}
                         phenotype:
-                          type: nested
                           source: Phenotype
                           exclude:
                           - _links
@@ -379,7 +376,6 @@ target-mappings:
               - visible
               properties: {}
             phenotype:
-              type: nested
               source: Phenotype
               exclude:
               - _links
