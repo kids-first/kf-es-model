@@ -77,6 +77,47 @@
                 "dbgap_consent_code": {
                   "type": "keyword"
                 },
+                "diagnoses": {
+                  "properties": {
+                    "age_at_event_days": {
+                      "type": "integer"
+                    },
+                    "diagnosis": {
+                      "type": "keyword"
+                    },
+                    "diagnosis_category": {
+                      "type": "keyword"
+                    },
+                    "external_id": {
+                      "type": "keyword"
+                    },
+                    "icd_id_diagnosis": {
+                      "type": "keyword"
+                    },
+                    "kf_id": {
+                      "type": "keyword"
+                    },
+                    "mondo_id_diagnosis": {
+                      "type": "keyword"
+                    },
+                    "ncit_id_diagnosis": {
+                      "type": "keyword"
+                    },
+                    "source_text_diagnosis": {
+                      "type": "keyword"
+                    },
+                    "source_text_tumor_location": {
+                      "type": "keyword"
+                    },
+                    "spatial_descriptor": {
+                      "type": "keyword"
+                    },
+                    "uberon_id_tumor_location": {
+                      "type": "keyword"
+                    }
+                  },
+                  "type": "nested"
+                },
                 "external_aliquot_id": {
                   "type": "keyword"
                 },
