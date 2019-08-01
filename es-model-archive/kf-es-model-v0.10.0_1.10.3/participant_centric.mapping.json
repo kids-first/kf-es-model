@@ -304,7 +304,8 @@
                         "source_text_phenotype": {
                           "type": "keyword"
                         }
-                      }
+                      },
+                      "type": "nested"
                     },
                     "race": {
                       "type": "keyword"
@@ -497,7 +498,8 @@
             "source_text_phenotype": {
               "type": "keyword"
             }
-          }
+          },
+          "type": "nested"
         },
         "race": {
           "type": "keyword"
