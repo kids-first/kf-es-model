@@ -153,7 +153,6 @@ target-mappings:
                       - hpo_id_phenotype
                       - snomed_id_phenotype
                       - participant_id
-                      - observed
                       - kf_id
                       - visible
                       properties:
@@ -171,6 +170,8 @@ target-mappings:
                           type: keyword
                         shared_hpo_ids:
                           type: keyword
+                        observed:
+                          type: boolean                          
                     relationship:
                       type: keyword
         outcome:
@@ -191,7 +192,6 @@ target-mappings:
           - hpo_id_phenotype
           - snomed_id_phenotype
           - participant_id
-          - observed
           - kf_id
           - visible
           properties:
@@ -207,6 +207,8 @@ target-mappings:
               type: keyword
             snomed_phenotype_observed:
               type: keyword
+            observed:
+              type: boolean              
         biospecimens:
           type: nested
           source: Biospecimen
@@ -361,7 +363,6 @@ target-mappings:
                           - hpo_id_phenotype
                           - snomed_id_phenotype
                           - participant_id
-                          - observed
                           - kf_id
                           - visible
                           properties:
@@ -379,6 +380,8 @@ target-mappings:
                               type: keyword
                             shared_hpo_ids:
                               type: keyword
+                            observed:
+                              type: boolean                              
                         relationship:
                           type: keyword
             outcome:
@@ -400,7 +403,6 @@ target-mappings:
               - hpo_id_phenotype
               - snomed_id_phenotype
               - participant_id
-              - observed
               - kf_id
               - visible
               properties:
@@ -416,6 +418,8 @@ target-mappings:
                   type: keyword
                 snomed_phenotype_observed:
                   type: keyword
+                observed:
+                  type: boolean                  
             biospecimens:
               type: nested
               source: Biospecimen
