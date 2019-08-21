@@ -292,9 +292,6 @@
                         "hpo_phenotype_observed_text": {
                           "type": "keyword"
                         },
-                        "observed": {
-                          "type": "boolean"
-                        },
                         "shared_hpo_ids": {
                           "type": "keyword"
                         },
@@ -491,9 +488,6 @@
             },
             "hpo_phenotype_observed_text": {
               "type": "keyword"
-            },
-            "observed": {
-              "type": "boolean"
             },
             "snomed_phenotype_not_observed": {
               "type": "keyword"
