@@ -32,7 +32,7 @@ field_type_map:
       type: keyword
 
 target-mappings:
-  version: 0.9.3
+  version: 0.10.1
   mappings:
     participant_centric:
       source: Participant
@@ -59,6 +59,8 @@ target-mappings:
           - visible
           - biospecimens
           properties:
+            biospecimens:
+              type: keyword
             diagnosis:
               type: keyword
         files:
