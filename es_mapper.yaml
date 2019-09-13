@@ -218,12 +218,24 @@ target-mappings:
           - _links
           - genomic_files
           - participant_id
-          - diagnoses
           - created_at
           - modified_at
           - visible
           - biospecimen_diagnoses
-          properties: {}
+          properties: 
+            diagnoses:
+              type: nested
+              source: Diagnosis
+              exclude:
+              - _links
+              - participant_id
+              - created_at
+              - modified_at
+              - visible
+              - biospecimens   
+              properties:
+                diagnosis:
+                  type: keyword                     
         study:
           source: Study
           exclude:
@@ -422,7 +434,20 @@ target-mappings:
               - diagnoses
               - visible
               - biospecimen_diagnoses
-              properties: {}
+              properties: 
+                diagnoses:
+                  type: nested
+                  source: Diagnosis
+                  exclude:
+                  - _links
+                  - participant_id
+                  - created_at
+                  - modified_at
+                  - visible
+                  - biospecimens   
+                  properties:
+                    diagnosis:
+                      type: keyword                
             study:
               source: Study
               exclude:

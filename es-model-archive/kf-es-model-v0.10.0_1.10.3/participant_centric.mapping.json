@@ -2,7 +2,7 @@
   "mappings": {
     "participant_centric": {
       "_meta": {
-        "kf-dataservice-version": "1.10.4"
+        "kf-dataservice-version": "1.10.3"
       },
       "properties": {
         "affected_status": {
@@ -127,9 +127,6 @@
           "properties": {
             "age_at_event_days": {
               "type": "integer"
-            },
-            "biospecimens": {
-              "type": "keyword"
             },
             "diagnosis": {
               "type": "keyword"
@@ -294,9 +291,6 @@
                         },
                         "hpo_phenotype_observed_text": {
                           "type": "keyword"
-                        },
-                        "observed": {
-                          "type": "boolean"
                         },
                         "shared_hpo_ids": {
                           "type": "keyword"
@@ -494,9 +488,6 @@
             },
             "hpo_phenotype_observed_text": {
               "type": "keyword"
-            },
-            "observed": {
-              "type": "boolean"
             },
             "snomed_phenotype_not_observed": {
               "type": "keyword"
