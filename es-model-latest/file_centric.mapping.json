@@ -74,6 +74,9 @@
                 "consent_type": {
                   "type": "keyword"
                 },
+                "duo_code": {
+                  "type": "keyword"
+                },
                 "dbgap_consent_code": {
                   "type": "keyword"
                 },
@@ -506,6 +509,12 @@
               "type": "keyword"
             },
             "library_name": {
+              "type": "keyword"
+            },
+            "library_prep": {
+              "type": "keyword"
+            },
+            "library_selection": {
               "type": "keyword"
             },
             "library_strand": {
